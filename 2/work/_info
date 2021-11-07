@@ -1,0 +1,251 @@
+m255
+K4
+z2
+!s11f vlog 2021.1 2021.02, Feb  2 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/anoop/uw/469/2
+valu
+Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z2 !s110 1635468230
+!i10b 1
+!s100 Az;_;3E?RVTLP3I<Aoj?a1
+IKc_Z2m2g`8TOYz^kPA1f?2
+S1
+R0
+Z3 w1635468219
+Z4 8./alu.sv
+Z5 F./alu.sv
+!i122 0
+L0 3 56
+Z6 VDg1SIo80bB@j0V0VzS_@n1
+Z7 OV;L;2021.1;73
+r1
+!s85 0
+31
+Z8 !s108 1635468230.000000
+!s107 ./mux5_1.sv|./mux2_1.sv|./alustim.sv|./alu.sv|./adder.sv|
+Z9 !s90 -sv|-timescale|10ps/10ps|-work|work|./adder.sv|./alu.sv|./alustim.sv|./mux2_1.sv|./mux5_1.sv|
+!i113 1
+Z10 o-sv -timescale 10ps/10ps -work work
+Z11 tCvgOpt 0
+valu_tb
+R1
+R2
+!i10b 1
+!s100 KcAnMHc]z;NG>B?ZNC9@j2
+IMgeK]dcngI^24_ATd7F7Y3
+S1
+R0
+R3
+R4
+R5
+!i122 0
+L0 60 37
+R6
+R7
+r1
+!s85 0
+31
+R8
+Z12 !s107 ./mux5_1.sv|./mux2_1.sv|./alustim.sv|./alu.sv|./adder.sv|
+R9
+!i113 1
+R10
+R11
+valustim
+R1
+R2
+!i10b 1
+!s100 Qm]g:m]o]JNZoFefG9Mdm0
+Iige8?_k80gCBKh:EHJOe13
+S1
+R0
+w1635287054
+8./alustim.sv
+F./alustim.sv
+!i122 0
+L0 20 73
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+vfa
+R1
+R2
+!i10b 1
+!s100 @ToM0RK0Zo14mjOOlIk051
+I4o`kfOgOS]6Mlz08C]L_50
+S1
+R0
+Z13 w1635286319
+Z14 8./adder.sv
+Z15 F./adder.sv
+!i122 0
+L0 2 7
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+vfa_tb
+R1
+R2
+!i10b 1
+!s100 9G5hedP1m8]P?L<VXRf;d2
+I_4Oijj57oY:93E0[h`;S]0
+S1
+R0
+R13
+R14
+R15
+!i122 0
+L0 16 12
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+vha
+R1
+R2
+!i10b 1
+!s100 G13MShbhoIPX9D_lWK?_D0
+I`?gkEj0=GnD9RlQ<UdIhd3
+S1
+R0
+R13
+R14
+R15
+!i122 0
+L0 10 5
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+vmux2_1
+R1
+R2
+!i10b 1
+!s100 dXd`9XeJJG`?b9]:N66I^1
+IObl_JXCGz0CfTEak6SQ^[0
+S1
+R0
+R13
+Z16 8./mux2_1.sv
+Z17 F./mux2_1.sv
+!i122 0
+Z18 L0 3 13
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+vmux2_1_testbench
+R1
+R2
+!i10b 1
+!s100 c>CVkj?PKM^6`JCgZ;6QF3
+IPA7:eWYP6h9lgSEPJeY=E1
+S1
+R0
+R13
+R16
+R17
+!i122 0
+L0 17 18
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+vmux5_1
+R1
+R2
+!i10b 1
+!s100 08Q`YUK`?`J8m?4klfd=01
+I<4^dFafz<B4B?KCgnSNW:3
+S1
+R0
+R13
+Z19 8./mux5_1.sv
+Z20 F./mux5_1.sv
+!i122 0
+R18
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+vmux5_1_testbench
+R1
+R2
+!i10b 1
+!s100 ^]kGYnFOF>bC^Kz@KS8831
+Ii0XX?Ze4cm]k];8bTQ7@@3
+S1
+R0
+R13
+R19
+R20
+!i122 0
+L0 17 10
+R6
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
