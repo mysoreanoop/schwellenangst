@@ -75,7 +75,7 @@ module sc_cpu (
       opcode == CBZ  ||
       opcode == B    ||
       opcode == BLT);
-    ab = opcode == CBZ || opcode == STUR ? rd, rm;
+    ab = opcode == CBZ || opcode == STUR ? rd : rm;
 
     //ALU connections
     db = () ? write_data : imm9; //TODO
