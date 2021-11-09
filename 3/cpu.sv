@@ -9,9 +9,7 @@ module sc_cpu (
   //d$ (from template provided)
   output logic [63:0] address,
   output logic        write_enable,
-  output logic        read_enable,
   output logic [63:0] write_data,
-  output logic [3:0]  xfer_size,
   input  logic [63:0] read_data
 
   //i$ (from template again)
@@ -47,7 +45,7 @@ module sc_cpu (
   idecode id(inst, opcode, imm12, imm26, imm19, imm9, shamt, w, rm, rn, rd, aluc);
   alu x(da, db, address, _n, _z, _o, _c);
   regfile rf(da, write_data, wd, rn, ab, rd, w, clk);
-  mul m(
+  mult m(
   shifter s(
 
   always @(posedge clk) begin

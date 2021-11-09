@@ -8,16 +8,16 @@ module SE_9 #(parameter width = 9)(out, in);  //2:1 mux
 
 endmodule 
  
-module SE_9_testbench(); // testbench for mux
-	logic [8:0]in;
-	logic [63:0]out; 
-	
-	SE_9 dut (.out, .in); 
-	
-	initial begin 
-		in=0; #10;
-		in = 9'b111111100; #10;
-		in = 9'b010111100; #10;
-		
-	end 
-endmodule
+//module SE_9_testbench(); // testbench for mux
+//	logic [8:0]in;
+//	logic [63:0]out; 
+//	
+//	SE_9 dut (.out, .in); 
+//	
+//	initial begin 
+//		in=0; #10;
+//		in = 9'b111111100; #10;
+//		in = 9'b010111100; #10;
+//		
+//	end 
+//endmodule
