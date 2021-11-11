@@ -17,14 +17,14 @@ module idecode(
   ze ze(inst[21:10], imm12);
   se se0(inst[25:0], imm26);
   se se1( inst[23:5], imm19);
-  se se2( inst[20:12], imm9);
+  se se1( inst[20:12], imm9);
   assign shamt = inst[15:10];
-  assign rm = inst[20:16];
+  assign rm = inst[20:16]
   assign rn = inst[9:5];
   assign rd = inst[4:0];
 
-  //ALU operation select (CTRL) //SUB=3'b011; ADD=3'b010
-  assign aluc = opcode == SUBS ? 3'b011 : 3'b010;
+  //ALU operation select
+  assign aluc = opcode == SUBS ? SUB : ADD;
 
   //opcode recognition
   always_comb
@@ -37,22 +37,18 @@ module idecode(
     else if(inst[31:22] == 10'h244)
       opcode = ADDI;
     else
-      case(inst[31:21]) //begin
-       // 11'h69a : assign opcode = LSR;
-		  11'h69a : opcode = LSR;
-        11'h69b : opcode = LSL;
-        11'h758 : opcode = SUBS;
-        11'h7c0 : opcode = STUR;
-        11'h7c2 : opcode = LDUR;
-        11'h558 : opcode = ADDS;
+      case(inst[31:21]) begin
+        11'h69a : assign opcode = LSR;
+        11'h69b : assign opcode = LSL;
+        11'h758 : assign opcode = SUBS;
+        11'h7c0 : assign opcode = STUR;
+        11'h7c2 : assign opcode = LDUR;
+        11'h558 : assign opcode = ADDS;
         11'h4d8 : 
           if(shamt == 5'h1f)
             opcode = MUL;
           else $error("MUL instruction without appropriate 'shamt'!");
         default : $error("Invalid instruction, fix me!");
-      endcase
- // end
-//ALU operation select
-  //assign aluc = opcode == SUBS ? SUB : ADD;
- // assign aluc = opcode == SUBS ? 3'b011 : 3'b010;
-  endmodule
+      end
+  end
+endmodule

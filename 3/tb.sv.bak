@@ -1,6 +1,6 @@
 `timescale 1ps/1ps
 module tb();
-  parameter ClockDelay = 50000;
+  parameter ClockDelay = 5000;
   logic clk, rst;
   initial begin // Set up the clock
     clk = 0;
