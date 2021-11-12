@@ -103,7 +103,19 @@ module sc_cpu (
         pc + (opcode == BLT || opcode == CBZ ? imm19 : imm26) << 2 : pc + 32'd4;
     end
   end
-  
+ 
+ //PC
+  logic [63:0]ls_in,x;
+
+  se se1 #(19)(_imm19,imm19);
+  se se2 #(26)(_imm26,imm26);
+  mux2 m_pc(ls_in,_imm19,_imm26,UncondBr);
+  LS_2 ls(x,ls_in); // left shift 2 (mul4)
+  add a4(o0,pc,64'b4); //pc+4
+  add a_br(o1,pc,x); // pc+ branch addr
+  mux2 m_br(pc,o0,o1,BrTaken);
+
+
   mux4 rf_w_mux (out, alu_result,dout,mul_out,shift_out, MemToReg);
   mux2 (ab,rd,rm, Reg2Loc);
  
