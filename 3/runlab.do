@@ -18,8 +18,25 @@ vlog "./cpu.sv"
 vlog "./add.sv"
 vlog "./top.sv"
 vlog "./tb.sv"
-
-
+vlog "./D_FF.sv"
+vlog "./DFF_VAR.sv"
+vlog "./D_FF_en.sv"
+vlog "./decoder1_2.sv"
+vlog "./decoder2_4.sv"
+vlog "./decoder3_8.sv"
+vlog "./decoder5_32.sv"
+vlog "./LS_2.sv"
+vlog "./mux2.sv"
+vlog "./mux4.sv"
+vlog "./mux4_1.sv"
+vlog "./mux5_1.sv"
+vlog "./mux8_1.sv"
+vlog "./mux32_1.sv"
+vlog "./mux64.sv"
+vlog "./regfile.sv"
+vlog "./register64.sv"
+vlog "./rf.sv"
+vlog "./register_bank_32.sv"
 
 
 # Call vsim to invoke simulator
