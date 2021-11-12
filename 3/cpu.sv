@@ -27,8 +27,8 @@ module sc_cpu (
   //decoder wires
   logic [3:0]  opcode; 
   logic [11:0] imm12;
-  logic [25:0] imm26;
-  logic [18:0] imm19;
+  logic [25:0] imm26, _imm26;
+  logic [18:0] imm19, _imm19;
   logic [8:0]  imm9, _imm9;
   logic [5:0]  shamt;
   logic [4:0]  rm, rn, rd;
@@ -66,7 +66,7 @@ module sc_cpu (
     || opcode == CBZ)
   logic ALUOp == opcode == SUBS ? 3'd3 : 3'd2;
   logic ALUSrc = opcode == LDUR || opcode == STUR;
-  logic UncondBr = opcode == BLT || opcode == CBZ;
+  logic UncondBr = ~((opcode == BLT && (_n != _o)) || (opcode == CBZ && _z));
   //D$ write enable:
   assign write_enable = opcode == STUR;
 
