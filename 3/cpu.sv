@@ -42,10 +42,13 @@ module sc_cpu (
   logic [63:0] r, _Db;
   logic [2:0] aluc;
   logic [63:0] mul_out, mult_high, shift_out;
-  
-	logic MemToReg 
-	logic Reg2Loc
-	logic RegWrite
+  //0 -
+	logic MemToReg = opcode == LDUR ? 2'd1 
+    : opcode == MUL ? 2'd2 
+    : opcode == LSL || opcode == LSR ? 2'd3
+    : 2'd0;
+	logic Reg2Loc = opcode == CBZ;
+	logic RegWrite = 
 	logic MemWrite
 	logic BrTaken
 	logic ALUOp
