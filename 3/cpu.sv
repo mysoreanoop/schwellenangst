@@ -39,51 +39,44 @@ module sc_cpu (
   logic WrEn;
 
   //ALU wires
-  logic [63:0] r, _Db;
+  logic [63:0] r;
   logic [2:0] aluc;
   logic [63:0] mul_out, mult_high, shift_out;
-  //0 -
-	logic MemToReg = opcode == LDUR ? 2'd1 
-    : opcode == MUL ? 2'd2 
-    : opcode == LSL || opcode == LSR ? 2'd3
-    : 2'd0;
-      logic [63:0] r, _Db;
-  logic [2:0] aluc;
-  logic [63:0] mul_out, mult_high, shift_out;
-  //0 -
+
   logic MemToReg = opcode == LDUR ? 2'd1
     : opcode == MUL ? 2'd2
-    : opcode == LSL || opcode == LSR ? 2'd3
-    : 2'd0;
+      : opcode == LSL || opcode == LSR ? 2'd3
+        : 2'd0;
   logic Reg2Loc = opcode == CBZ;
-  logic RegWrite = ~(opcode == B
+  logic RegWrite = !(opcode == B
     || opcode == BLT
     || opcode == CBZ
-    || opcode == STUR)
-  logic MemWrite = opcode == STUR;
+    || opcode == STUR);
+  logic MemWrite = (opcode == STUR);
   logic BrTaken = (opcode == B
     || opcode == BLT
-    || opcode == CBZ)
-  logic ALUOp == opcode == SUBS ? 3'd3 : 3'd2;
-  logic ALUSrc = opcode == LDUR || opcode == STUR;
+    || opcode == CBZ);
+  logic ALUOp = opcode == SUBS ? 3'd3 : 3'd2;
+  logic ALUSrc = {opcode == ADDI , opcode == LDUR || opcode == STUR};
   logic UncondBr = ~((opcode == BLT && (_n != _o)) || (opcode == CBZ && _z));
   //D$ write enable:
   assign write_enable = opcode == STUR;
 
   //inst decoder, alu, rf, mul, shifter
   idecode id(inst, opcode, imm12, imm26, imm19, imm9, shamt, w, rm, rn, rd, aluc);
-
-  se se9 #(9) (imm9_1, imm9)
-  mux2 m2(_Db, Db, imm9_1, ALUSrc);
-  mux2 m3(Ab, Rm, Rd, Reg2Loc); //TODO gotta make a 5 bit 2:1 bus mux!
+  
+  ze addi (_imm12, imm12);
+  se #(9) se9 (_imm9, imm9);
+  mux4 alu_b (_Db, Db, _imm9, _imm12, _imm12, ALUSrc);
+  mux2 rn_sel (Ab, Rm, Rd, Reg2Loc); //TODO gotta make a 5 bit 2:1 bus mux!
   
   mult mul(Da, Db, 1'b1, mul_out, mul_high);
   shifter s(Da, opcode[0], shamt, shift_out);
-  alu x(Da, _Db, ALUOp, Addr, address, _n, _z, _o, _c);
+  alu xu (Da, _Db, ALUOp, Addr, _n, _z, _o, _c);
 
   mux4 rf_write(Dw, Addr, Dout, mul_out, shift_out, MemToReg);
 
-  regfile rf(Da, Db, Dw, Aa, Ab, Aw, WrEn, clk);
+  regfile rf(Da, Db, Dw, Aa, Ab, Aw, RegWrite, clk);
 
   always @(posedge clk) begin
     if(rst) begin
@@ -106,27 +99,11 @@ module sc_cpu (
  
  //PC
   logic [63:0]ls_in,x;
-
-  se se1 #(19)(_imm19,imm19);
-  se se2 #(26)(_imm26,imm26);
+  se #(19)se1 (_imm19,imm19);
+  se #(26)se2 (_imm26,imm26);
   mux2 m_pc(ls_in,_imm19,_imm26,UncondBr);
   LS_2 ls(x,ls_in); // left shift 2 (mul4)
-  add a4(o0,pc,64'b4); //pc+4
+  add a4(o0,pc,64'h4); //pc+4
   add a_br(o1,pc,x); // pc+ branch addr
   mux2 m_br(pc,o0,o1,BrTaken);
-
-
-  mux4 rf_w_mux (out, alu_result,dout,mul_out,shift_out, MemToReg);
-  mux2 (ab,rd,rm, Reg2Loc);
- 
-  always_comb begin
-    //RF related assignments
-    
-	  wd = opcode == LDUR ? read_data : addr_out; //MemToReg - expand as mux
-    w = !(opcode == STUR || // MemWrite 
-      opcode == CBZ  ||
-      opcode == B    ||
-      opcode == BLT);
-    ab = opcode == CBZ || opcode == STUR ? rd : rm; // Reg2Loc
-  end
 endmodule

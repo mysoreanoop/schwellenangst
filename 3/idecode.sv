@@ -49,7 +49,7 @@ module idecode(
           if(shamt == 5'h1f)
             opcode = MUL;
           else $error("MUL instruction without appropriate 'shamt'!");
-        default : $error("Invalid instruction, fix me!");
+        default : $error("Invalid instruction, fix me! %x", inst);
       endcase
  // end
 //ALU operation select
