@@ -47,14 +47,26 @@ module sc_cpu (
     : opcode == MUL ? 2'd2 
     : opcode == LSL || opcode == LSR ? 2'd3
     : 2'd0;
-	logic Reg2Loc = opcode == CBZ;
-	logic RegWrite = 
-	logic MemWrite
-	logic BrTaken
-	logic ALUOp
-	logic ALUSrc
-	logic UncondBr; //check again
-  
+      logic [63:0] r, _Db;
+  logic [2:0] aluc;
+  logic [63:0] mul_out, mult_high, shift_out;
+  //0 -
+  logic MemToReg = opcode == LDUR ? 2'd1
+    : opcode == MUL ? 2'd2
+    : opcode == LSL || opcode == LSR ? 2'd3
+    : 2'd0;
+  logic Reg2Loc = opcode == CBZ;
+  logic RegWrite = ~(opcode == B
+    || opcode == BLT
+    || opcode == CBZ
+    || opcode == STUR)
+  logic MemWrite = opcode == STUR;
+  logic BrTaken = (opcode == B
+    || opcode == BLT
+    || opcode == CBZ)
+  logic ALUOp == opcode == SUBS ? 3'd3 : 3'd2;
+  logic ALUSrc = opcode == LDUR || opcode == STUR;
+  logic UncondBr = opcode == BLT || opcode == CBZ;
   //D$ write enable:
   assign write_enable = opcode == STUR;
 
