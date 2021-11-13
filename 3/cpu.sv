@@ -82,7 +82,7 @@ module sc_cpu (
   mux2_a rn_sel (Ab, Rd, Rm, Reg2Loc); //TODO gotta make a 5 bit 2:1 bus mux!
   
   mult mul(Da, Db, 1'b1, mul_out, mult_high);
-  shifter s(Da, opcode[0], shamt, shift_out);
+  shifter s(Da, ~opcode[0], shamt, shift_out);
   alu xu (Da, _Db, ALUOp, Addr, _n, _z, _o, _c);
 
   mux4 rf_write(Dw, Addr, DataInFromDMem, mul_out, shift_out, MemToReg);
@@ -123,6 +123,6 @@ module sc_cpu (
     $display("ALU:%x %x %x %x %x %x %b %b\n",Da, _Db, ALUOp, Addr, _n, _z, _o, _c);
     $display("MUX4:%x %x %x %x %x %x\n",Dw, Addr, DataInFromDMem, mul_out, shift_out, MemToReg);
     $display("ALUSrc:%x %x %x %x %x %x\n",_Db, Db, _imm9, _imm12, _imm12, ALUSrc);
-    $display("D$: %x %x %x %x \n",Addr, DataInFromDMem, WrEn_d, Db);
+    $display("D$: %x %x %x %x \n", shamt, DataInFromDMem, WrEn_d, Db);
   end
 endmodule
