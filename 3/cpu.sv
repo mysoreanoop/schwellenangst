@@ -57,7 +57,7 @@ module sc_cpu (
     : opcode == `MUL ? 2'd2
       : opcode == `LSL || opcode == `LSR ? 2'd3
         : 2'd0;
-  assign Reg2Loc = ~(opcode == `CBZ);
+  assign Reg2Loc = ~(opcode == `STUR || opcode == `CBZ);
   assign RegWrite = ~(opcode == `B
     || opcode == `BLT
     || opcode == `CBZ
@@ -85,7 +85,7 @@ module sc_cpu (
   shifter s(Da, opcode[0], shamt, shift_out);
   alu xu (Da, _Db, ALUOp, Addr, _n, _z, _o, _c);
 
-  mux4 rf_write(Dw, Addr, Dout, mul_out, shift_out, MemToReg);
+  mux4 rf_write(Dw, Addr, DataInFromDMem, mul_out, shift_out, MemToReg);
 
   regfile rf(Da, Db, Dw, Rn, Ab, Rd, RegWrite, clk);
   
@@ -121,7 +121,7 @@ module sc_cpu (
     $display("ALU0: %x | ALU1: %x\n", Da, Db);
     $display("RF:%x %x %x %x %x %x %b\n", Da, Db, Dw, Rn, Ab, Rd, RegWrite);
     $display("ALU:%x %x %x %x %x %x %b %b\n",Da, _Db, ALUOp, Addr, _n, _z, _o, _c);
-    $display("MUX4:%x %x %x %x %x %x\n",Dw, Addr, Dout, mul_out, shift_out, MemToReg);
+    $display("MUX4:%x %x %x %x %x %x\n",Dw, Addr, DataInFromDMem, mul_out, shift_out, MemToReg);
     $display("ALUSrc:%x %x %x %x %x %x\n",_Db, Db, _imm9, _imm12, _imm12, ALUSrc);
     $display("D$: %x %x %x %x \n",Addr, DataInFromDMem, WrEn_d, Db);
   end
