@@ -6,16 +6,20 @@ module regfile(ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, Wr
  input logic [63:0] WriteData;
  output logic [63:0] ReadData2, ReadData1;
 
- reg [0:30][63:0] mem;
+ reg [0:31][63:0] mem;
+ assign ReadData1 = ReadRegister1 != '1 ? mem[ReadRegister1] : '0;
+ assign ReadData2 = ReadRegister2 != '1 ? mem[ReadRegister2] : '0;
  always@(posedge clk) begin
-  if(ReadRegister1 == '1) 
-    ReadData1 <= '0;
-  else ReadData1 <= mem[ReadRegister1];
+  mem[31] <= '0;
+  //if(ReadRegister1 == '1) 
+  //  ReadData1 <= '0;
+  //else ReadData1 <= mem[ReadRegister1];
 
-  if(ReadRegister2 == '1)
-    ReadData2 <= '0;
-  else ReadData2 <= mem[ReadRegister2];
-
+  //if(ReadRegister2 == '1)
+  //  ReadData2 <= '0;
+  //else ReadData2 <= mem[ReadRegister2];
+ end
+ always@(posedge clk) begin
   if(RegWrite)
     if(WriteRegister != '1)
       mem[WriteRegister] <= WriteData;
@@ -35,7 +39,7 @@ module regfile(ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, Wr
 // for(i=0; i<32; i++) assign ri[i] = WriteData;
 
  always @(negedge clk)
-  $display("RF Inside:%x %x %x %x %x %x %b\n", ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, WriteRegister, RegWrite);
+  $strobe("RF Inside:%x %x %x %x %x %x %b\n", ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, WriteRegister, RegWrite);
 endmodule 
  
 module rf_tb(); 

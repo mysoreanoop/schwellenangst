@@ -16,14 +16,11 @@
 module sc_cpu (
   input  logic        clk,
   input  logic        rst,
-
-  //d$ (from template provided)
   output logic [63:0] Addr,
   output logic        WrEn_d,
-  output logic [63:0] Dout,
-  input  logic [63:0] Db,
+  input  logic [63:0] DataInFromDMem,
+  output logic [63:0] Db,
 
-  //i$ (from template again)
   output reg   [63:0] pc_reg,
   input  logic [31:0] inst
 );
@@ -124,5 +121,7 @@ module sc_cpu (
     $display("ALU0: %x | ALU1: %x\n", Da, Db);
     $display("RF:%x %x %x %x %x %x %b\n", Da, Db, Dw, Rn, Ab, Rd, RegWrite);
     $display("ALU:%x %x %x %x %x %x\n",Da, _Db, ALUOp, Addr, _n, _z);
+    $display("MUX4:%x %x %x %x %x %x\n",Dw, Addr, Dout, mul_out, shift_out, MemToReg);
+    $display("ALUSrc:%x %x %x %x %x %x\n",_Db, Db, _imm9, _imm12, _imm12, ALUSrc);
   end
 endmodule
