@@ -5,19 +5,37 @@ module regfile(ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, Wr
  input logic [4:0] ReadRegister1, ReadRegister2, WriteRegister;
  input logic [63:0] WriteData;
  output logic [63:0] ReadData2, ReadData1;
- reg rst;
- initial rst = 0;
- 
- logic [31:0][63:0] ro, ri; //register bank out, in
- logic [31:0] we;
 
- mux64 m0(ReadData1, ro, ReadRegister1);
- mux64 m1(ReadData2, ro, ReadRegister2);
- decoder5_32 d(WriteRegister, we, RegWrite);
- register_bank_32 r(.data_out(ro), .data_in(ri), .clk(clk), .reset(rst), .write_en(we));
+ reg [0:30][63:0] mem;
+ always@(posedge clk) begin
+  if(ReadRegister1 == '1) 
+    ReadData1 <= '0;
+  else ReadData1 <= mem[ReadRegister1];
 
- genvar i;
- for(i=0; i<32; i++) assign ri[i] = WriteData;
+  if(ReadRegister2 == '1)
+    ReadData2 <= '0;
+  else ReadData2 <= mem[ReadRegister2];
+
+  if(RegWrite)
+    if(WriteRegister != '1)
+      mem[WriteRegister] <= WriteData;
+ end
+// reg rst;
+// initial rst = 0;
+// 
+// logic [31:0][63:0] ro, ri; //register bank out, in
+// logic [31:0] we;
+//
+// mux64 m0(ReadData1, ro, ReadRegister1);
+// mux64 m1(ReadData2, ro, ReadRegister2);
+// decoder5_32 d(WriteRegister, we, RegWrite);
+// register_bank_32 r(.data_out(ro), .data_in(ri), .clk(clk), .reset(rst), .write_en(we));
+//
+// genvar i;
+// for(i=0; i<32; i++) assign ri[i] = WriteData;
+
+ always @(negedge clk)
+  $display("RF Inside:%x %x %x %x %x %x %b\n", ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, WriteRegister, RegWrite);
 endmodule 
  
 module rf_tb(); 
@@ -51,8 +69,8 @@ module rf_tb();
   end
   if(RegWrite) _rf[WriteRegister] <= WriteData;
   else begin
-   assert((_rf[ReadRegister1] === ReadData2) && (_rf[ReadRegister2] === ReadData1)) $display("Jesus is real!"); //AM: Turns out === matches X's as well; == doesn't!!
-    else $error("Read %6x %6x; doesn't match local registry's %6x %6x!!", _rf[ReadRegister1], _rf[ReadRegister2], ReadData2, ReadData1);
+   assert((_rf[ReadRegister1] === ReadData1) && (_rf[ReadRegister2] === ReadData2)) $display("Jesus is real!"); //AM: Turns out === matches X's as well; == doesn't!!
+    else $error("Read %6x %6x; doesn't match local registry's %6x %6x!!", _rf[ReadRegister1], _rf[ReadRegister2], ReadData1, ReadData2);
   end
   end
  end

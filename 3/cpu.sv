@@ -45,7 +45,7 @@ module sc_cpu (
   logic [4:0]  Rm, Rn, Rd;
 
   //rf wires
-  logic [4:0]  Aw, Ab, Aa;
+  logic [4:0]  Ab, Aa;
   logic [63:0] Da, _Db, Dw;
   logic WrEn;
 
@@ -61,7 +61,7 @@ module sc_cpu (
       : opcode == `LSL || opcode == `LSR ? 2'd3
         : 2'd0;
   assign Reg2Loc = opcode == `CBZ;
-  assign RegWrite = !(opcode == `B
+  assign RegWrite = ~(opcode == `B
     || opcode == `BLT
     || opcode == `CBZ
     || opcode == `STUR);
@@ -90,7 +90,7 @@ module sc_cpu (
 
   mux4 rf_write(Dw, Addr, Dout, mul_out, shift_out, MemToReg);
 
-  regfile rf(Da, Db, Dw, Rn, Ab , Aw, RegWrite, clk);
+  regfile rf(Da, Db, Dw, Rn, Ab, Rd, RegWrite, clk);
   
   logic [63:0] pc_n;
   always @(posedge clk) begin
@@ -122,6 +122,7 @@ module sc_cpu (
   always @(posedge clk) begin
     //$display("o0 %x | o1 %x | pc %x pc_reg %x\n", o0, o1, pc_n, pc_reg);
     $display("ALU0: %x | ALU1: %x\n", Da, Db);
-    $display("RF:%x %x %x %x %x %x %b\n", Da, Db, Dw, Rn, Ab , Aw, RegWrite);
+    $display("RF:%x %x %x %x %x %x %b\n", Da, Db, Dw, Rn, Ab, Rd, RegWrite);
+    $display("ALU:%x %x %x %x %x %x\n",Da, _Db, ALUOp, Addr, _n, _z);
   end
 endmodule
