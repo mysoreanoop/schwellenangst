@@ -8,4 +8,6 @@ module top(
   sc_cpu xx (clk, rst, addr, we, wd, rd, pc, inst);
   datamem dm(addr, we, 1'b1, wd, clk, 4'd6, rd);
   instructmem im(pc, inst, clk);
+  always @(posedge clk)
+    $display("PC: %x | I: %x\n", pc, inst);
 endmodule

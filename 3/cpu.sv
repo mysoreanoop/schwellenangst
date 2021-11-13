@@ -1,5 +1,16 @@
 `timescale 1ps/1ps
 `define PC_INIT 0
+`define ADDI 1
+`define ADDS 2
+`define BLT  3
+`define B    4
+`define CBZ  5
+`define LDUR 6
+`define LSL  7
+`define LSR  8
+`define MUL  9
+`define STUR 10
+`define SUBS 11
 
 //Enka -- our single cycle ARM CPU!
 module sc_cpu (
@@ -21,14 +32,13 @@ module sc_cpu (
   reg z, o, c, n;
   logic _z, _o, _c, _n;
   
-  typedef enum logic[3:0] // define opcodes 
-    { ADDI, ADDS, BLT, B, CBZ, LDUR, LSL, LSR, MUL, STUR, SUBS , INV } ops;
-  
   //decoder wires
   logic [3:0]  opcode; 
   logic [11:0] imm12;
-  logic [25:0] imm26, _imm26;
-  logic [18:0] imm19, _imm19;
+  logic [25:0] _imm26;
+  logic [63:0] _imm19;
+  logic [63:0] imm26;
+  logic [18:0] imm19;
   logic [8:0]  imm9, _imm9;
   logic [5:0]  shamt;
   logic [4:0]  rm, rn, rd;
@@ -39,31 +49,34 @@ module sc_cpu (
   logic WrEn;
 
   //ALU wires
-  logic [63:0] r;
-  logic [2:0] aluc;
+  logic [63:0] r, _imm12;
   logic [63:0] mul_out, mult_high, shift_out;
 
-  logic MemToReg = opcode == LDUR ? 2'd1
-    : opcode == MUL ? 2'd2
-      : opcode == LSL || opcode == LSR ? 2'd3
+  logic Reg2Loc, RegWrite, BrTaken, ALUSrc, UncondBr;
+  logic [1:0] MemToReg;
+  logic [2:0] ALUOp;
+  assign MemToReg = opcode == `LDUR ? 2'd1
+    : opcode == `MUL ? 2'd2
+      : opcode == `LSL || opcode == `LSR ? 2'd3
         : 2'd0;
-  logic Reg2Loc = opcode == CBZ;
-  logic RegWrite = !(opcode == B
-    || opcode == BLT
-    || opcode == CBZ
-    || opcode == STUR);
-  logic MemWrite = (opcode == STUR);
-  logic BrTaken = (opcode == B
-    || opcode == BLT
-    || opcode == CBZ);
-  logic ALUOp = opcode == SUBS ? 3'd3 : 3'd2;
-  logic ALUSrc = {opcode == ADDI , opcode == LDUR || opcode == STUR};
-  logic UncondBr = ~((opcode == BLT && (_n != _o)) || (opcode == CBZ && _z));
-  //D$ write enable:
-  assign write_enable = opcode == STUR;
+  assign Reg2Loc = opcode == `CBZ;
+  assign RegWrite = !(opcode == `B
+    || opcode == `BLT
+    || opcode == `CBZ
+    || opcode == `STUR);
+  assign WrEn_d = opcode == `STUR;
+  assign BrTaken = (opcode == `B
+    || opcode == `BLT
+    || opcode == `CBZ);
+  assign ALUOp = opcode == `SUBS ? 3'd3 : 3'd2;
+  assign ALUSrc = {opcode == `ADDI , opcode == `LDUR || opcode == `STUR};
+  assign UncondBr = ~((opcode == `BLT && (_n != _o)) || (opcode == `CBZ && _z));
+  always @(posedge clk)
+    $display("op: %x | M2R %x | R2L %x | RW %x | BT %x | AO %x | AS %x | UB %x\n",
+      opcode, MemToReg, Reg2Loc, RegWrite, BrTaken, ALUOp, ALUSrc, UncondBr);
 
   //inst decoder, alu, rf, mul, shifter
-  idecode id(inst, opcode, imm12, imm26, imm19, imm9, shamt, w, rm, rn, rd, aluc);
+  idecode id(inst, opcode, imm12, imm26, imm19, imm9, shamt, w, rm, rn, rd);
   
   ze addi (_imm12, imm12);
   se #(9) se9 (_imm9, imm9);
@@ -91,19 +104,16 @@ module sc_cpu (
       o <= _o;
       c <= _c;
       n <= _n;
-      //PC calculation
-      pc <= opcode == B || opcode == BLT && (o ^ n) || opcode == CBZ && _z ? // expand with adder, mux, se
-        pc + (opcode == BLT || opcode == CBZ ? imm19 : imm26) << 2 : pc + 32'd4;
     end
   end
  
- //PC
-  logic [63:0]ls_in,x;
-  se #(19)se1 (_imm19,imm19);
-  se #(26)se2 (_imm26,imm26);
-  mux2 m_pc(ls_in,_imm19,_imm26,UncondBr);
-  LS_2 ls(x,ls_in); // left shift 2 (mul4)
-  add a4(o0,pc,64'h4); //pc+4
-  add a_br(o1,pc,x); // pc+ branch addr
+  //PC computation
+  logic [63:0] ls_in, ax;
+  se #(19) se1 (_imm19,imm19);
+  se #(26) se2 (_imm26,imm26);
+  mux2 m_pc(ls_in, _imm19, _imm26, UncondBr);
+  LS_2 ls(ax, ls_in); // left shift 2 (mul4)
+  add a4(o0, pc, 64'h4); //pc+4
+  add a_br(o1, pc, ax); // pc+ branch addr
   mux2 m_br(pc,o0,o1,BrTaken);
 endmodule

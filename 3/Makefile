@@ -5,7 +5,6 @@ SOURCES = \
   ./D_FF_en.sv \
   ./LS_2.sv \
   ./add.sv \
-  ./add.sv \
   ./adder.sv \
   ./alu.sv \
   ./cpu.sv \
@@ -28,7 +27,6 @@ SOURCES = \
   ./regfile.sv \
   ./register64.sv \
   ./register_bank_32.sv \
-  ./rf.sv \
   ./se.sv \
   ./tb.sv \
   ./top.sv \
