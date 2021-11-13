@@ -15,6 +15,7 @@ module regfile(ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, Wr
  mux64 m1(ReadData2, ro, ReadRegister2);
  decoder5_32 d(WriteRegister, we, RegWrite);
  register_bank_32 r(.data_out(ro), .data_in(ri), .clk(clk), .reset(rst), .write_en(we));
+
  genvar i;
  for(i=0; i<32; i++) assign ri[i] = WriteData;
 endmodule 

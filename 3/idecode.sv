@@ -25,10 +25,10 @@ module idecode(
 );
   
   //From the instruction encodings
-  ze ze (imm12, inst[21:10]);
-  se se0(imm26, inst[25:0] );
-  se se1(imm19, inst[23:5] );
-  se se2(imm9 , inst[20:12]);
+  assign imm12 = inst[21:10];
+  assign imm26 = inst[25:0] ;
+  assign imm19 = inst[23:5] ;
+  assign imm9  = inst[20:12];
   assign shamt = inst[15:10];
   assign rm = inst[20:16];
   assign rn = inst[9:5];
@@ -47,7 +47,7 @@ module idecode(
     else
       case(inst[31:21]) //begin
        // 11'h69a : assign opcode = LSR;
-		  11'h69a : opcode = `LSR;
+		    11'h69a : opcode = `LSR;
         11'h69b : opcode = `LSL;
         11'h758 : opcode = `SUBS;
         11'h7c0 : opcode = `STUR;
@@ -57,6 +57,6 @@ module idecode(
           if(shamt == 5'h1f)
             opcode = `MUL;
           else $error("MUL instruction without appropriate 'shamt'!");
-        default : $error("Invalid instruction, fix me! %x", inst);
+        default : $display("");
       endcase
 endmodule

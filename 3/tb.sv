@@ -1,12 +1,20 @@
-`timescale 1ps/1ps
+`timescale 1ns/100ps
 module tb();
-  parameter ClockDelay = 50000;
   logic clk, rst;
-  initial begin // Set up the clock
-    clk = 0;
-    rst = 1;
-    forever #(ClockDelay/2) clk <= ~clk;
-  end
 
   top dut(clk, rst);
+
+  initial begin // Set up the clock
+    clk <= 0;
+    rst = 1;
+    #500
+    rst = 0;
+  end
+  initial begin
+   forever #100 clk <= ~clk;
+  end
+  initial begin
+    #5000 $stop;
+  end
+
 endmodule

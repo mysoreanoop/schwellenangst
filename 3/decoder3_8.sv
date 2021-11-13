@@ -1,3 +1,4 @@
+`timescale 1ps/1ps
 module decoder3_8(out,in,e);
 output logic[7:0] out;
 input logic [2:0] in;

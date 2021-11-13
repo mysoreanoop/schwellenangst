@@ -1,3 +1,4 @@
+`timescale 1ps/1ps
 // 5:32 decoder ( for write address)
 module decoder2_4(out,in,e);
 output logic[3:0] out;

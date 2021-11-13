@@ -2,7 +2,7 @@
 `timescale 1ps/1ps
 module ze (out, in);  
 	output logic [63:0] out; //output 64 bit
-	input logic [11:0]in; // input - 11 bit
+	input logic [11:0] in; // input - 11 bit
 	
 	assign out =  { {52{1'b0}} , in[11:0] };	
 

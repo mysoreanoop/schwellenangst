@@ -8,10 +8,14 @@ module register_bank_32  (data_out, data_in, clk, reset, write_en);
  
  genvar i; 
  generate 
- for(i=0; i<32; i++) begin : eachReg
- register64 r(data_out[i], data_in[i], clk, reset, write_en[i]); 
- end 
+  for(i=0; i<32; i++) begin : eachReg
+   register64 r(data_out[i], data_in[i], clk, reset, write_en[i]); 
+  end 
  endgenerate 
+ // int k;
+ // always @(posedge clk)
+ //   for(k=0; k<8; k++)
+ //     $display("Reg[%d]=%d\n",k, eachReg[k].r.data_out);
 endmodule 
 
 module register_bank_32_testbench(); 
