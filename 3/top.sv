@@ -2,7 +2,7 @@ module top(
   input logic clk, rst
 );
 
-  logic [63:0] addr, wd, rd, pc;
+  logic [63:0] addr, din, writeData, pc;
   logic [31:0] inst;
   logic we, re;
   sc_cpu cpu_inst (clk, rst, addr, we, din, writeData, pc, inst);

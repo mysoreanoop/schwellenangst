@@ -57,18 +57,18 @@ module sc_cpu (
     : opcode == `MUL ? 2'd2
       : opcode == `LSL || opcode == `LSR ? 2'd3
         : 2'd0;
-  assign Reg2Loc = opcode == `CBZ;
+  assign Reg2Loc = ~(opcode == `CBZ);
   assign RegWrite = ~(opcode == `B
     || opcode == `BLT
     || opcode == `CBZ
     || opcode == `STUR);
   assign WrEn_d = opcode == `STUR;
   assign BrTaken = (opcode == `B
-    || opcode == `BLT
-    || opcode == `CBZ);
-  assign ALUOp = opcode == `SUBS ? 3'd3 : 3'd2;
+    || (opcode == `BLT) &&  (n ^ o)
+    || (opcode == `CBZ) && _z);
+  assign ALUOp = opcode == `SUBS ? 3'd3 : (opcode == `CBZ ? 3'd0 : 3'd2);
   assign ALUSrc = {opcode == `ADDI , opcode == `LDUR || opcode == `STUR};
-  assign UncondBr = ~((opcode == `BLT && (_n != _o)) || (opcode == `CBZ && _z));
+  assign UncondBr = ~((opcode == `BLT) && (n ^ o) || (opcode == `CBZ) && _z);
   always @(posedge clk)
     $display("op: %x | M2R %x | R2L %x | RW %x | BT %x | AOp %x | ASrc %x | UB %x\n",
       opcode, MemToReg, Reg2Loc, RegWrite, BrTaken, ALUOp, ALUSrc, UncondBr);
@@ -79,7 +79,7 @@ module sc_cpu (
   ze addi (_imm12, imm12);
   se #(9) se9 (_imm9, imm9);
   mux4 alu_b (_Db, Db, _imm9, _imm12, _imm12, ALUSrc);
-  mux2_a rn_sel (Ab, Rm, Rd, Reg2Loc); //TODO gotta make a 5 bit 2:1 bus mux!
+  mux2_a rn_sel (Ab, Rd, Rm, Reg2Loc); //TODO gotta make a 5 bit 2:1 bus mux!
   
   mult mul(Da, Db, 1'b1, mul_out, mult_high);
   shifter s(Da, opcode[0], shamt, shift_out);
@@ -112,16 +112,17 @@ module sc_cpu (
   se #(19) se1 (_imm19,imm19);
   se #(26) se2 (_imm26,imm26);
   mux2 m_pc(ls_in, _imm19, _imm26, UncondBr);
-  LS_2 ls(ax, ls_in); // left shift 2 (mul4)
+  //LS_2 ls(ax, ls_in); // left shift 2 (mul4)
   add a4(o0, pc_reg, 64'h4); //pc+4
-  add a_br(o1, pc_reg, ax); // pc+ branch addr
+  add a_br(o1, pc_reg, ls_in << 2); // pc+ branch addr
   mux2 m_br(pc_n, o0, o1, BrTaken);
   always @(posedge clk) begin
-    //$display("o0 %x | o1 %x | pc %x pc_reg %x\n", o0, o1, pc_n, pc_reg);
+    $display("o0 %x | o1 %x | pc %x pc_reg %x\n", (ls_in <<2)+pc_reg, pc_reg+64'd4, pc_n, pc_reg);
     $display("ALU0: %x | ALU1: %x\n", Da, Db);
     $display("RF:%x %x %x %x %x %x %b\n", Da, Db, Dw, Rn, Ab, Rd, RegWrite);
-    $display("ALU:%x %x %x %x %x %x\n",Da, _Db, ALUOp, Addr, _n, _z);
+    $display("ALU:%x %x %x %x %x %x %b %b\n",Da, _Db, ALUOp, Addr, _n, _z, _o, _c);
     $display("MUX4:%x %x %x %x %x %x\n",Dw, Addr, Dout, mul_out, shift_out, MemToReg);
     $display("ALUSrc:%x %x %x %x %x %x\n",_Db, Db, _imm9, _imm12, _imm12, ALUSrc);
+    $display("D$: %x %x %x %x \n",Addr, DataInFromDMem, WrEn_d, Db);
   end
 endmodule
