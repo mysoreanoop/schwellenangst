@@ -88,26 +88,29 @@ module sc_cpu (
   mux4 rf_write(Dw, Addr, DataInFromDMem, mul_out, shift_out, MemToReg);
 
   regfile rf(Da, Db, Dw, Rn, Ab, Rd, RegWrite, clk);
-  
+
   logic [63:0] pc_n;
-  always @(posedge clk) begin
-    if(rst) begin
-      //reset flags and pc
-      z <= 1'b0; //Some of these may not be needed
-      o <= 1'b0;
-      c <= 1'b0;
-      n <= 1'b0;
-      pc_reg <= 64'h0;
-    end else begin
-      if(opcode == `SUBS || opcode == `ADDS) begin
-        z <= _z;
-        o <= _o;
-        c <= _c;
-        n <= _n;
-      end
-      pc_reg <= pc_n;
-    end
-  end
+  register_v #(4) flags ({z,o,c,n}, {_z,_o,_c,_n}, clk, rst, ~rst && (opcode == `SUBS || opcode == `ADDS));
+  register_v #(64) pc_inst (pc_reg, pc_n, clk, rst, ~rst);
+  
+//  always @(posedge clk) begin
+//    if(rst) begin
+//      //reset flags and pc
+//      z <= 1'b0; //Some of these may not be needed
+//      o <= 1'b0;
+//      c <= 1'b0;
+//      n <= 1'b0;
+//      pc_reg <= 64'h0;
+//    end else begin
+//      if(opcode == `SUBS || opcode == `ADDS) begin
+//        z <= _z;
+//        o <= _o;
+//        c <= _c;
+//        n <= _n;
+//      end
+//      pc_reg <= pc_n;
+//    end
+//  end
  
   //PC computation
   logic [63:0] ls_in, ax, o0, o1;
