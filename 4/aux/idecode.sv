@@ -20,7 +20,6 @@ module idecode(
   output logic [18:0] imm19,
   output logic [8:0] imm9,
   output logic [5:0] shamt,
-  output logic w,
   output logic [4:0] rm, rn, rd
 );
   

@@ -3,8 +3,8 @@
 // two words of the address must be 0).
 //
 // To change the file that is loaded, edit the filename here:
-//`define BENCHMARK "../benchmarks/test01_AddiB.arm"
-`define BENCHMARK "../benchmarks/test02_AddsSubs.arm"
+`define BENCHMARK "../benchmarks/test01_AddiB.arm"
+//`define BENCHMARK "../benchmarks/test02_AddsSubs.arm"
 //`define BENCHMARK "../benchmarks/test03_CbzB.arm"
 //`define BENCHMARK "../benchmarks/test04_LdurStur.arm"
 //`define BENCHMARK "../benchmarks/test10_forwarding.arm"
@@ -30,7 +30,7 @@ module instructmem (
 	always_ff @(posedge clk) begin
 		if (address !== 'x) begin // address or size could be all X's at startup, so ignore this case.
 			assert(address[1:0] == 0);	// Makes sure address is aligned.
-			assert(address + 3 < `INSTRUCT_MEM_SIZE);	// Make sure address in bounds.
+			//assert(address + 3 < `INSTRUCT_MEM_SIZE);	// Make sure address in bounds.
 		end
 	end
 	

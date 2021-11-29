@@ -48,8 +48,8 @@ module regfile #(parameter delay = 50) (ReadData1, ReadData2, WriteData, ReadReg
       mem[WriteRegister] <= WriteData;
  end
 
- always @(negedge clk)
-  $strobe("RF Inside:%x %x %x %x %x %x %b\n", ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, WriteRegister, RegWrite);
+ //always @(negedge clk)
+ // $strobe("RF Inside:%x %x %x %x %x %x %b\n", ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, WriteRegister, RegWrite);
 endmodule 
  
 module rf_tb(); 

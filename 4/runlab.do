@@ -6,14 +6,12 @@ vlib work
 #     their own "vlog" line below.
 
 vlog "./accelerated_branch.sv"
-vlog "./aux/DFF_VAR.sv"
 vlog "./aux/D_FF.sv"
 vlog "./aux/D_FF_en.sv"
 vlog "./aux/LS_2.sv"
 vlog "./aux/add.sv"
 vlog "./aux/adder.sv"
 vlog "./aux/alu.sv"         
-vlog "./aux/cpu.sv"
 vlog "./aux/datamem.sv"
 vlog "./aux/decoder1_2.sv"
 vlog "./aux/decoder2_4.sv"
@@ -52,7 +50,7 @@ vsim -voptargs="+acc" -t 1ps -lib work tb
 # Source the wave do file
 #     This should be the file that sets up the signal window for
 #     the module you are testing.
-#do wave.do
+do wave.do
 
 # Set the window types
 view wave

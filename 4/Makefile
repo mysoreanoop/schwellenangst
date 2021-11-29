@@ -1,15 +1,13 @@
-TEST_MODULE = pipelined_cpu
+TEST_MODULE = tb
 
 SOURCES = \
 	./accelerated_branch.sv \
-	./aux/DFF_VAR.sv \
 	./aux/D_FF.sv \
 	./aux/D_FF_en.sv \
 	./aux/LS_2.sv \
 	./aux/add.sv \
 	./aux/adder.sv \
 	./aux/alu.sv \
-	./aux/cpu.sv \
 	./aux/datamem.sv \
 	./aux/decoder1_2.sv \
 	./aux/decoder2_4.sv \

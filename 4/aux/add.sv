@@ -9,12 +9,11 @@ logic [63:0] co,ci;
 assign ci[0]=0;
 
 genvar i;
-  generate      // ALU operations bit sliced, 64 times to give 64 bit ALU
+  generate
     for(i=0; i<64; i++) begin : slice
 
       if(i>0) assign ci[i] = co[i-1];
       fa f (a[i], b[i], ci[i], s[i], co[i]);
-
     end
 
   endgenerate
