@@ -14,7 +14,7 @@ module tb();
    forever #100 clk <= ~clk;
   end
   initial begin
-    #2000 $stop;
+    #20000 $stop;
   end
 
 endmodule
