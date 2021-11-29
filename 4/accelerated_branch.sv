@@ -16,15 +16,16 @@
 `define MUL  9
 `define STUR 10
 `define SUBS 11
+`define INV  12
 
 module accelerated_branch(pc_br,BrTaken, pc_out, db,n,o,opcode,imm19,imm26);
 
-output logic [31:0] pc_br;
+output logic [63:0] pc_br;
 output logic BrTaken;
 
 input logic n,o;  // negative and overflow flags from prev cycle (out of regs)
 input logic [63:0] db;// take db wire after forwarding muxes
-input logic [31:0] pc_out;
+input logic [63:0] pc_out;
 input logic [3:0] opcode;
 input logic [18:0] imm19;
 input logic [25:0] imm26;
@@ -67,13 +68,13 @@ assign UncondBr = ~((opcode == `BLT) && (n ^ o) || (opcode == `CBZ) && zero);
 
  //adder for target PC computation
   logic [63:0] ls_in, ax, o0, o1;
+  logic [63:0] _imm19, _imm26;
   se #(19) se1 (_imm19,imm19);
   se #(26) se2 (_imm26,imm26);
   mux2 m_pc(ls_in, _imm19, _imm26, UncondBr);
   LS_2 ls(ax, ls_in); // left shift 2 (mul4)
                                  //add a4(o0, pc_reg, 64'h4); //pc+4 do this in IF stage
   add a_br(pc_br, pc_out, ax); // pc+ branch addr
-  //mux2 m_br(pc_n, o0, o1, BrTaken);
 
 
 endmodule 

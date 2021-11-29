@@ -11,6 +11,7 @@
 `define MUL  9
 `define STUR 10
 `define SUBS 11
+`define INV  12
 
 module idecode(
   input logic [31:0] inst,
@@ -55,7 +56,12 @@ module idecode(
         11'h4d8 : 
           if(shamt == 5'h1f)
             opcode = `MUL;
-          else $error("MUL instruction without appropriate 'shamt'!");
-        default : $display("");
+          else begin
+            opcode = `INV;
+            $error("MUL instruction without appropriate 'shamt'!");
+          end
+        default : begin 
+          opcode = `INV;
+        end
       endcase
 endmodule

@@ -2,33 +2,33 @@ TEST_MODULE = tb
 
 SOURCES = \
 	./accelerated_branch.sv \
-	./aux/D_FF.sv \
-	./aux/D_FF_en.sv \
-	./aux/LS_2.sv \
-	./aux/add.sv \
-	./aux/adder.sv \
-	./aux/alu.sv \
-	./aux/datamem.sv \
-	./aux/decoder1_2.sv \
-	./aux/decoder2_4.sv \
-	./aux/decoder3_8.sv \
-	./aux/decoder5_32.sv \
-	./aux/idecode.sv \
-	./aux/instructmem.sv \
-	./aux/math.sv \
-	./aux/mux2.sv \
-	./aux/mux2_1.sv \
-	./aux/mux32_1.sv \
-	./aux/mux4.sv \
-	./aux/mux4_1.sv \
-	./aux/mux5_1.sv \
-	./aux/mux64.sv \
-	./aux/mux8_1.sv \
-	./aux/regfile.sv \
-	./aux/register64.sv \
-	./aux/register_bank_32.sv \
-	./aux/se.sv \
-	./aux/ze.sv \
+	./ansi/D_FF.sv \
+	./ansi/D_FF_en.sv \
+	./ansi/LS_2.sv \
+	./ansi/add.sv \
+	./ansi/adder.sv \
+	./ansi/alu.sv \
+	./ansi/datamem.sv \
+	./ansi/decoder1_2.sv \
+	./ansi/decoder2_4.sv \
+	./ansi/decoder3_8.sv \
+	./ansi/decoder5_32.sv \
+	./ansi/idecode.sv \
+	./ansi/instructmem.sv \
+	./ansi/math.sv \
+	./ansi/mux2.sv \
+	./ansi/mux2_1.sv \
+	./ansi/mux32_1.sv \
+	./ansi/mux4.sv \
+	./ansi/mux4_1.sv \
+	./ansi/mux5_1.sv \
+	./ansi/mux64.sv \
+	./ansi/mux8_1.sv \
+	./ansi/regfile.sv \
+	./ansi/register64.sv \
+	./ansi/register_bank_32.sv \
+	./ansi/se.sv \
+	./ansi/ze.sv \
 	./control.sv \
 	./forwarding.sv \
 	./pipelined_cpu.sv \

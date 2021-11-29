@@ -5,9 +5,12 @@ add wave -noupdate /tb/rst
 add wave -noupdate -radix hexadecimal /tb/dut/pc_in
 add wave -noupdate -radix hexadecimal /tb/dut/pc_out
 add wave -noupdate /tb/dut/BrTaken
-add wave -noupdate /tb/dut/BrTaken_RF
+add wave -noupdate /tb/dut/BrTaken_IF
+add wave -noupdate /tb/dut/inst
+add wave -noupdate /tb/dut/inst_IF
+add wave -noupdate /tb/dut/opcode
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {624895 ps} 0}
+WaveRestoreCursors {{Cursor 1} {181683 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100

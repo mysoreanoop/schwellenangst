@@ -12,6 +12,7 @@
 `define MUL  9
 `define STUR 10
 `define SUBS 11
+`define INV  12
 
 module control(opcode, Reg2Loc, ALUSrc, MemToReg, RegWrite, MemWrite,ALUOp);
 
