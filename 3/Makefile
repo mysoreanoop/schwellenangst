@@ -26,6 +26,7 @@ SOURCES = \
   ./mux8_1.sv \
   ./regfile.sv \
   ./register64.sv \
+  ./register_v.sv \
   ./register_bank_32.sv \
   ./se.sv \
   ./tb.sv \
