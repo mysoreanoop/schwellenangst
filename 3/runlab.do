@@ -35,6 +35,7 @@ vlog "./mux32_1.sv"
 vlog "./mux64.sv"
 vlog "./regfile.sv"
 vlog "./register64.sv"
+vlog "./register_v.sv"
 vlog "./register_bank_32.sv"
 
 

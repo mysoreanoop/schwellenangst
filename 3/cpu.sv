@@ -92,48 +92,29 @@ module sc_cpu (
   logic [63:0] pc_n;
   logic [3:0] _op1, _op2;
   logic t, nrst, t0, t1, tand, t2, t3, tsub;
-  xor _opx0(_op1[0], opcode[3], 0);
-  xor _opx1(_op1[1], opcode[2], 0);
-  xor _opx2(_op1[2], opcode[1], 1);
-  xor _opx3(_op1[3], opcode[0], 0);
+  xnor _opx0(_op1[0], opcode[3], 0);
+  xnor _opx1(_op1[1], opcode[2], 0);
+  xnor _opx2(_op1[2], opcode[1], 1);
+  xnor _opx3(_op1[3], opcode[0], 0);
   and _opx4(t0, _op1[0], _op1[1]);
   and _opx5(t1, _op1[2], _op1[3]);
   and _opx6(tand, t0,t1);
 
-  xor _opy0(_op2[0], opcode[3], 1);
-  xor _opy1(_op2[1], opcode[2], 0);
-  xor _opy2(_op2[2], opcode[1], 1);
-  xor _opy3(_op2[3], opcode[0], 1);
+  xnor _opy0(_op2[0], opcode[3], 1);
+  xnor _opy1(_op2[1], opcode[2], 0);
+  xnor _opy2(_op2[2], opcode[1], 1);
+  xnor _opy3(_op2[3], opcode[0], 1);
   and _opy4(t2, _op2[0], _op2[1]);
   and _opy5(t3, _op2[2], _op2[3]);
-  and _opy6(txor, t0,t1);
+  and _opy6(tsub, t2,t3);
 
-  and _opz0(_t, tand,txor);
-  and _opz1(t, t, nrst);
+  or  _opz0(_t, tand,tsub);
+  and _opz1(t, _t, nrst);
   not _opq0(nrst, rst);
 
 
   register_v #(4) flags ({z,o,c,n}, {_z,_o,_c,_n}, clk, rst, t);
   register_v #(64) pc_inst (pc_reg, pc_n, clk, rst, nrst);
-  
-//  always @(posedge clk) begin
-//    if(rst) begin
-//      //reset flags and pc
-//      z <= 1'b0; //Some of these may not be needed
-//      o <= 1'b0;
-//      c <= 1'b0;
-//      n <= 1'b0;
-//      pc_reg <= 64'h0;
-//    end else begin
-//      if(opcode == `SUBS || opcode == `ADDS) begin
-//        z <= _z;
-//        o <= _o;
-//        c <= _c;
-//        n <= _n;
-//      end
-//      pc_reg <= pc_n;
-//    end
-//  end
  
   //PC computation
   logic [63:0] ls_in, ax, o0, o1;
