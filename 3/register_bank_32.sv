@@ -5,10 +5,11 @@ module register_bank_32  (data_out, data_in, clk, reset, write_en);
  input logic clk; 
  input logic reset;
  input logic [31:0] write_en;
+ assign data_out[31] = '0;
  
  genvar i; 
  generate 
-  for(i=0; i<32; i++) begin : eachReg
+  for(i=0; i<31; i++) begin : eachReg
    register64 r(data_out[i], data_in[i], clk, reset, write_en[i]); 
   end 
  endgenerate 

@@ -1,0 +1,968 @@
+vsim -t ps -batch -lib work rf_tb -do "run -all; quit -f"
+# vsim -t ps -batch -lib work rf_tb -do "run -all; quit -f" 
+# Start time: 19:33:38 on Nov 30,2021
+# Loading sv_std.std
+# Loading work.rf_tb
+# Loading work.regfile
+# Loading work.mux64
+# Loading work.decoder5_32
+# Loading work.decoder2_4
+# Loading work.decoder3_8
+# Loading work.decoder1_2
+# Loading work.register_bank_32
+# Loading work.mux32_1
+# Loading work.mux8_1
+# Loading work.mux4_1
+# Loading work.mux2_1
+# Loading work.register64
+# Loading work.D_FF_en
+# Loading work.D_FF
+# ** Warning: Design size of 11766 instances exceeds ModelSim - Intel FPGA Starter Edition recommended capacity.
+# This may because you are loading cell libraries which are not recommended with
+# the ModelSim - Intel FPGA Edition. Expect performance to be adversely affected.
+# 
+# run -all
+# t=000000 | ReadRegister1=xx | ReadRegister2=xx | WriteRegister=xx 
+# r | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=xxxxxx 
+# 
+# 
+# t=000001 | ReadRegister1=xx | ReadRegister2=xx | WriteRegister=xx 
+# r | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=xxxxxx 
+# 
+# 
+# t=000000 | ReadRegister1=xx | ReadRegister2=xx | WriteRegister=xx 
+# r | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=xxxxxx 
+# 
+# 
+# t=000001 | ReadRegister1=xx | ReadRegister2=xx | WriteRegister=xx 
+# r | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=xxxxxx 
+# 
+# 
+# t=000000 | ReadRegister1=xx | ReadRegister2=xx | WriteRegister=xx 
+# r | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=xxxxxx 
+# 
+# 
+# All is well
+# t=000001 | ReadRegister1=05 | ReadRegister2=06 | WriteRegister=00 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000011 
+# 
+# 
+# t=000000 | ReadRegister1=05 | ReadRegister2=06 | WriteRegister=00 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000011 
+# 
+# 
+# t=000001 | ReadRegister1=06 | ReadRegister2=07 | WriteRegister=01 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=0001e4 
+# 
+# 
+# t=000000 | ReadRegister1=06 | ReadRegister2=07 | WriteRegister=01 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=0001e4 
+# 
+# 
+# t=000001 | ReadRegister1=07 | ReadRegister2=08 | WriteRegister=02 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=00015f 
+# 
+# 
+# t=000000 | ReadRegister1=07 | ReadRegister2=08 | WriteRegister=02 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=00015f 
+# 
+# 
+# t=000001 | ReadRegister1=08 | ReadRegister2=09 | WriteRegister=03 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000015 
+# 
+# 
+# t=000000 | ReadRegister1=08 | ReadRegister2=09 | WriteRegister=03 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=000015 
+# 
+# 
+# t=000000 | ReadRegister1=08 | ReadRegister2=09 | WriteRegister=03 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000015 
+# 
+# 
+# t=000001 | ReadRegister1=09 | ReadRegister2=0a | WriteRegister=04 
+# w | ReadData2=000000 | ReadData1=xxxxxx | WriteData=00005b 
+# 
+# 
+# t=000001 | ReadRegister1=09 | ReadRegister2=0a | WriteRegister=04 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=00005b 
+# 
+# 
+# t=000000 | ReadRegister1=09 | ReadRegister2=0a | WriteRegister=04 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=00005b 
+# 
+# 
+# t=000000 | ReadRegister1=09 | ReadRegister2=0a | WriteRegister=04 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=00005b 
+# 
+# 
+# t=000001 | ReadRegister1=0a | ReadRegister2=0b | WriteRegister=05 
+# w | ReadData2=xxxxxx | ReadData1=000000 | WriteData=000242 
+# 
+# 
+# t=000001 | ReadRegister1=0a | ReadRegister2=0b | WriteRegister=05 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000242 
+# 
+# 
+# t=000000 | ReadRegister1=0a | ReadRegister2=0b | WriteRegister=05 
+# w | ReadData2=xxxxxx | ReadData1=000000 | WriteData=000242 
+# 
+# 
+# t=000000 | ReadRegister1=0a | ReadRegister2=0b | WriteRegister=05 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000242 
+# 
+# 
+# t=000001 | ReadRegister1=0b | ReadRegister2=0c | WriteRegister=06 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=0001d8 
+# 
+# 
+# t=000000 | ReadRegister1=0b | ReadRegister2=0c | WriteRegister=06 
+# w | ReadData2=000000 | ReadData1=xxxxxx | WriteData=0001d8 
+# 
+# 
+# t=000000 | ReadRegister1=0b | ReadRegister2=0c | WriteRegister=06 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=0001d8 
+# 
+# 
+# t=000001 | ReadRegister1=0c | ReadRegister2=0d | WriteRegister=07 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000113 
+# 
+# 
+# t=000000 | ReadRegister1=0c | ReadRegister2=0d | WriteRegister=07 
+# w | ReadData2=xxxxxx | ReadData1=000000 | WriteData=000113 
+# 
+# 
+# t=000000 | ReadRegister1=0c | ReadRegister2=0d | WriteRegister=07 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000113 
+# 
+# 
+# t=000001 | ReadRegister1=0d | ReadRegister2=0e | WriteRegister=08 
+# w | ReadData2=000000 | ReadData1=xxxxxx | WriteData=000342 
+# 
+# 
+# t=000001 | ReadRegister1=0d | ReadRegister2=0e | WriteRegister=08 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000342 
+# 
+# 
+# t=000000 | ReadRegister1=0d | ReadRegister2=0e | WriteRegister=08 
+# w | ReadData2=000000 | ReadData1=xxxxxx | WriteData=000342 
+# 
+# 
+# t=000000 | ReadRegister1=0d | ReadRegister2=0e | WriteRegister=08 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000342 
+# 
+# 
+# t=000001 | ReadRegister1=0e | ReadRegister2=0f | WriteRegister=09 
+# w | ReadData2=xxxxxx | ReadData1=000000 | WriteData=000260 
+# 
+# 
+# t=000001 | ReadRegister1=0e | ReadRegister2=0f | WriteRegister=09 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000260 
+# 
+# 
+# t=000000 | ReadRegister1=0e | ReadRegister2=0f | WriteRegister=09 
+# w | ReadData2=xxxxxx | ReadData1=000000 | WriteData=000260 
+# 
+# 
+# t=000000 | ReadRegister1=0e | ReadRegister2=0f | WriteRegister=09 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000260 
+# 
+# 
+# t=000001 | ReadRegister1=0f | ReadRegister2=10 | WriteRegister=0a 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=00022a 
+# 
+# 
+# t=000000 | ReadRegister1=0f | ReadRegister2=10 | WriteRegister=0a 
+# w | ReadData2=000000 | ReadData1=xxxxxx | WriteData=00022a 
+# 
+# 
+# t=000000 | ReadRegister1=0f | ReadRegister2=10 | WriteRegister=0a 
+# w | ReadData2=0001e4 | ReadData1=xxxxxx | WriteData=00022a 
+# 
+# 
+# t=000001 | ReadRegister1=10 | ReadRegister2=11 | WriteRegister=0b 
+# w | ReadData2=000000 | ReadData1=xxxxxx | WriteData=000333 
+# 
+# 
+# t=000001 | ReadRegister1=10 | ReadRegister2=11 | WriteRegister=0b 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000333 
+# 
+# 
+# t=000000 | ReadRegister1=10 | ReadRegister2=11 | WriteRegister=0b 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=000333 
+# 
+# 
+# t=000000 | ReadRegister1=10 | ReadRegister2=11 | WriteRegister=0b 
+# w | ReadData2=xxxxxx | ReadData1=0001e4 | WriteData=000333 
+# 
+# 
+# t=000001 | ReadRegister1=11 | ReadRegister2=12 | WriteRegister=0c 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=000323 
+# 
+# 
+# t=000001 | ReadRegister1=11 | ReadRegister2=12 | WriteRegister=0c 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000323 
+# 
+# 
+# t=000000 | ReadRegister1=11 | ReadRegister2=12 | WriteRegister=0c 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=000323 
+# 
+# 
+# t=000000 | ReadRegister1=11 | ReadRegister2=12 | WriteRegister=0c 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000323 
+# 
+# 
+# t=000001 | ReadRegister1=12 | ReadRegister2=13 | WriteRegister=0d 
+# w | ReadData2=xxxxxx | ReadData1=000000 | WriteData=000210 
+# 
+# 
+# t=000001 | ReadRegister1=12 | ReadRegister2=13 | WriteRegister=0d 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000210 
+# 
+# 
+# t=000000 | ReadRegister1=12 | ReadRegister2=13 | WriteRegister=0d 
+# w | ReadData2=xxxxxx | ReadData1=000000 | WriteData=000210 
+# 
+# 
+# t=000000 | ReadRegister1=12 | ReadRegister2=13 | WriteRegister=0d 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000210 
+# 
+# 
+# t=000001 | ReadRegister1=13 | ReadRegister2=14 | WriteRegister=0e 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=00026c 
+# 
+# 
+# t=000000 | ReadRegister1=13 | ReadRegister2=14 | WriteRegister=0e 
+# w | ReadData2=000000 | ReadData1=xxxxxx | WriteData=00026c 
+# 
+# 
+# t=000000 | ReadRegister1=13 | ReadRegister2=14 | WriteRegister=0e 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=00026c 
+# 
+# 
+# t=000001 | ReadRegister1=14 | ReadRegister2=15 | WriteRegister=0f 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000045 
+# 
+# 
+# t=000000 | ReadRegister1=14 | ReadRegister2=15 | WriteRegister=0f 
+# w | ReadData2=xxxXXX | ReadData1=000000 | WriteData=000045 
+# 
+# 
+# t=000000 | ReadRegister1=14 | ReadRegister2=15 | WriteRegister=0f 
+# w | ReadData2=000342 | ReadData1=xxxxxx | WriteData=000045 
+# 
+# 
+# t=000001 | ReadRegister1=15 | ReadRegister2=16 | WriteRegister=10 
+# w | ReadData2=000000 | ReadData1=xxxxxx | WriteData=0000f9 
+# 
+# 
+# t=000001 | ReadRegister1=15 | ReadRegister2=16 | WriteRegister=10 
+# w | ReadData2=00022a | ReadData1=xxxxxx | WriteData=0000f9 
+# 
+# 
+# t=000000 | ReadRegister1=15 | ReadRegister2=16 | WriteRegister=10 
+# w | ReadData2=000000 | ReadData1=000373 | WriteData=0000f9 
+# 
+# 
+# t=000000 | ReadRegister1=15 | ReadRegister2=16 | WriteRegister=10 
+# w | ReadData2=000333 | ReadData1=000342 | WriteData=0000f9 
+# 
+# 
+# t=000001 | ReadRegister1=16 | ReadRegister2=17 | WriteRegister=11 
+# w | ReadData2=000333 | ReadData1=000000 | WriteData=00016d 
+# 
+# 
+# t=000001 | ReadRegister1=16 | ReadRegister2=17 | WriteRegister=11 
+# w | ReadData2=000333 | ReadData1=00022a | WriteData=00016d 
+# 
+# 
+# t=000000 | ReadRegister1=16 | ReadRegister2=17 | WriteRegister=11 
+# w | ReadData2=00033b | ReadData1=000000 | WriteData=00016d 
+# 
+# 
+# t=000000 | ReadRegister1=16 | ReadRegister2=17 | WriteRegister=11 
+# w | ReadData2=00022a | ReadData1=000333 | WriteData=00016d 
+# 
+# 
+# t=000001 | ReadRegister1=17 | ReadRegister2=18 | WriteRegister=12 
+# w | ReadData2=00036a | ReadData1=000333 | WriteData=000323 
+# 
+# 
+# t=000001 | ReadRegister1=17 | ReadRegister2=18 | WriteRegister=12 
+# w | ReadData2=000342 | ReadData1=000333 | WriteData=000323 
+# 
+# 
+# t=000000 | ReadRegister1=17 | ReadRegister2=18 | WriteRegister=12 
+# w | ReadData2=000000 | ReadData1=00033b | WriteData=000323 
+# 
+# 
+# t=000000 | ReadRegister1=17 | ReadRegister2=18 | WriteRegister=12 
+# w | ReadData2=000260 | ReadData1=00022a | WriteData=000323 
+# 
+# 
+# t=000001 | ReadRegister1=18 | ReadRegister2=19 | WriteRegister=13 
+# w | ReadData2=0003e4 | ReadData1=00036a | WriteData=000322 
+# 
+# 
+# t=000001 | ReadRegister1=18 | ReadRegister2=19 | WriteRegister=13 
+# w | ReadData2=0001e4 | ReadData1=000342 | WriteData=000322 
+# 
+# 
+# t=000000 | ReadRegister1=18 | ReadRegister2=19 | WriteRegister=13 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=000322 
+# 
+# 
+# t=000000 | ReadRegister1=18 | ReadRegister2=19 | WriteRegister=13 
+# w | ReadData2=00005b | ReadData1=000260 | WriteData=000322 
+# 
+# 
+# t=000001 | ReadRegister1=19 | ReadRegister2=1a | WriteRegister=14 
+# w | ReadData2=000000 | ReadData1=0003e4 | WriteData=0000ef 
+# 
+# 
+# t=000001 | ReadRegister1=19 | ReadRegister2=1a | WriteRegister=14 
+# w | ReadData2=0001d8 | ReadData1=0001e4 | WriteData=0000ef 
+# 
+# 
+# t=000000 | ReadRegister1=19 | ReadRegister2=1a | WriteRegister=14 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=0000ef 
+# 
+# 
+# t=000000 | ReadRegister1=19 | ReadRegister2=1a | WriteRegister=14 
+# w | ReadData2=000113 | ReadData1=00005b | WriteData=0000ef 
+# 
+# 
+# t=000001 | ReadRegister1=1a | ReadRegister2=1b | WriteRegister=15 
+# w | ReadData2=000113 | ReadData1=000000 | WriteData=0000e3 
+# 
+# 
+# t=000001 | ReadRegister1=1a | ReadRegister2=1b | WriteRegister=15 
+# w | ReadData2=000113 | ReadData1=0001d8 | WriteData=0000e3 
+# 
+# 
+# t=000000 | ReadRegister1=1a | ReadRegister2=1b | WriteRegister=15 
+# w | ReadData2=0001db | ReadData1=000000 | WriteData=0000e3 
+# 
+# 
+# t=000000 | ReadRegister1=1a | ReadRegister2=1b | WriteRegister=15 
+# w | ReadData2=0001d8 | ReadData1=000113 | WriteData=0000e3 
+# 
+# 
+# t=000001 | ReadRegister1=1b | ReadRegister2=1c | WriteRegister=16 
+# w | ReadData2=0001db | ReadData1=000113 | WriteData=00016b 
+# 
+# 
+# t=000001 | ReadRegister1=1b | ReadRegister2=1c | WriteRegister=16 
+# w | ReadData2=00005b | ReadData1=000113 | WriteData=00016b 
+# 
+# 
+# t=000000 | ReadRegister1=1b | ReadRegister2=1c | WriteRegister=16 
+# w | ReadData2=000000 | ReadData1=0001db | WriteData=00016b 
+# 
+# 
+# t=000000 | ReadRegister1=1b | ReadRegister2=1c | WriteRegister=16 
+# w | ReadData2=000242 | ReadData1=0001d8 | WriteData=00016b 
+# 
+# 
+# t=000001 | ReadRegister1=1c | ReadRegister2=1d | WriteRegister=17 
+# w | ReadData2=000242 | ReadData1=0001db | WriteData=000394 
+# 
+# 
+# t=000001 | ReadRegister1=1c | ReadRegister2=1d | WriteRegister=17 
+# w | ReadData2=000242 | ReadData1=00005b | WriteData=000394 
+# 
+# 
+# t=000000 | ReadRegister1=1c | ReadRegister2=1d | WriteRegister=17 
+# w | ReadData2=0003ff | ReadData1=000000 | WriteData=000394 
+# 
+# 
+# t=000000 | ReadRegister1=1c | ReadRegister2=1d | WriteRegister=17 
+# w | ReadData2=000011 | ReadData1=000242 | WriteData=000394 
+# 
+# 
+# t=000001 | ReadRegister1=1d | ReadRegister2=1e | WriteRegister=18 
+# w | ReadData2=000000 | ReadData1=000242 | WriteData=0001d1 
+# 
+# 
+# t=000001 | ReadRegister1=1d | ReadRegister2=1e | WriteRegister=18 
+# w | ReadData2=00015f | ReadData1=000242 | WriteData=0001d1 
+# 
+# 
+# t=000000 | ReadRegister1=1d | ReadRegister2=1e | WriteRegister=18 
+# w | ReadData2=000000 | ReadData1=0003ff | WriteData=0001d1 
+# 
+# 
+# t=000000 | ReadRegister1=1d | ReadRegister2=1e | WriteRegister=18 
+# w | ReadData2=000015 | ReadData1=000011 | WriteData=0001d1 
+# 
+# 
+# t=000001 | ReadRegister1=1e | ReadRegister2=1f | WriteRegister=19 
+# w | ReadData2=000015 | ReadData1=000000 | WriteData=0000c3 
+# 
+# 
+# t=000001 | ReadRegister1=1e | ReadRegister2=1f | WriteRegister=19 
+# w | ReadData2=000015 | ReadData1=00015f | WriteData=0000c3 
+# 
+# 
+# t=000000 | ReadRegister1=1e | ReadRegister2=1f | WriteRegister=19 
+# w | ReadData2=00015f | ReadData1=000000 | WriteData=0000c3 
+# 
+# 
+# t=000000 | ReadRegister1=1e | ReadRegister2=1f | WriteRegister=19 
+# w | ReadData2=00015f | ReadData1=000015 | WriteData=0000c3 
+# 
+# 
+# t=000001 | ReadRegister1=1f | ReadRegister2=00 | WriteRegister=1a 
+# w | ReadData2=00015f | ReadData1=000015 | WriteData=00018f 
+# 
+# 
+# t=000001 | ReadRegister1=1f | ReadRegister2=00 | WriteRegister=1a 
+# w | ReadData2=000011 | ReadData1=000015 | WriteData=00018f 
+# 
+# 
+# t=000000 | ReadRegister1=1f | ReadRegister2=00 | WriteRegister=1a 
+# w | ReadData2=000000 | ReadData1=00015f | WriteData=00018f 
+# 
+# 
+# t=000000 | ReadRegister1=1f | ReadRegister2=00 | WriteRegister=1a 
+# w | ReadData2=00016d | ReadData1=00015f | WriteData=00018f 
+# 
+# 
+# t=000001 | ReadRegister1=00 | ReadRegister2=01 | WriteRegister=1b 
+# w | ReadData2=000000 | ReadData1=00015f | WriteData=000399 
+# 
+# 
+# t=000001 | ReadRegister1=00 | ReadRegister2=01 | WriteRegister=1b 
+# w | ReadData2=xxxxxx | ReadData1=000011 | WriteData=000399 
+# 
+# 
+# t=000000 | ReadRegister1=00 | ReadRegister2=01 | WriteRegister=1b 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=000399 
+# 
+# 
+# t=000000 | ReadRegister1=00 | ReadRegister2=01 | WriteRegister=1b 
+# w | ReadData2=xxxxxx | ReadData1=00016d | WriteData=000399 
+# 
+# 
+# t=000001 | ReadRegister1=01 | ReadRegister2=02 | WriteRegister=1c 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=000351 
+# 
+# 
+# t=000001 | ReadRegister1=01 | ReadRegister2=02 | WriteRegister=1c 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000351 
+# 
+# 
+# t=000000 | ReadRegister1=01 | ReadRegister2=02 | WriteRegister=1c 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=000351 
+# 
+# 
+# t=000000 | ReadRegister1=01 | ReadRegister2=02 | WriteRegister=1c 
+# w | ReadData2=000000 | ReadData1=xxxxxx | WriteData=000351 
+# 
+# 
+# t=000001 | ReadRegister1=02 | ReadRegister2=03 | WriteRegister=1d 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=00015a 
+# 
+# 
+# t=000001 | ReadRegister1=02 | ReadRegister2=03 | WriteRegister=1d 
+# w | ReadData2=000000 | ReadData1=xxxxxx | WriteData=00015a 
+# 
+# 
+# t=000000 | ReadRegister1=02 | ReadRegister2=03 | WriteRegister=1d 
+# w | ReadData2=xxxxxx | ReadData1=000000 | WriteData=00015a 
+# 
+# 
+# t=000001 | ReadRegister1=03 | ReadRegister2=04 | WriteRegister=1e 
+# w | ReadData2=xxxxxx | ReadData1=000000 | WriteData=000205 
+# 
+# 
+# t=000000 | ReadRegister1=03 | ReadRegister2=04 | WriteRegister=1e 
+# w | ReadData2=000000 | ReadData1=xxxxxx | WriteData=000205 
+# 
+# 
+# t=000000 | ReadRegister1=03 | ReadRegister2=04 | WriteRegister=1e 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000205 
+# 
+# 
+# t=000001 | ReadRegister1=04 | ReadRegister2=05 | WriteRegister=1f 
+# w | ReadData2=xxxxxx | ReadData1=xxxxxx | WriteData=000395 
+# 
+# 
+# t=000000 | ReadRegister1=04 | ReadRegister2=05 | WriteRegister=1f 
+# w | ReadData2=xxxXXX | ReadData1=000000 | WriteData=000395 
+# 
+# 
+# t=000000 | ReadRegister1=04 | ReadRegister2=05 | WriteRegister=1f 
+# w | ReadData2=0001d1 | ReadData1=xxxxxx | WriteData=000395 
+# 
+# 
+# ** Error: Read 00005b 000242 from local reg; doesn't match DUT's xxxxxx 000000 @04 05!!
+#    Time: 6900 ps  Scope: rf_tb File: ./regfile.sv Line: 101
+# t=000001 | ReadRegister1=05 | ReadRegister2=06 | WriteRegister=00 
+# w | ReadData2=000000 | ReadData1=xxxxxx | WriteData=0001a4 
+# 
+# 
+# t=000001 | ReadRegister1=05 | ReadRegister2=06 | WriteRegister=00 
+# w | ReadData2=00018f | ReadData1=xxxxxx | WriteData=0001a4 
+# 
+# 
+# t=000000 | ReadRegister1=05 | ReadRegister2=06 | WriteRegister=00 
+# w | ReadData2=000000 | ReadData1=0003db | WriteData=0001a4 
+# 
+# 
+# t=000000 | ReadRegister1=05 | ReadRegister2=06 | WriteRegister=00 
+# w | ReadData2=000399 | ReadData1=0001d1 | WriteData=0001a4 
+# 
+# 
+# t=000001 | ReadRegister1=06 | ReadRegister2=07 | WriteRegister=01 
+# w | ReadData2=000399 | ReadData1=000000 | WriteData=0000a5 
+# 
+# 
+# t=000001 | ReadRegister1=06 | ReadRegister2=07 | WriteRegister=01 
+# w | ReadData2=000399 | ReadData1=00018f | WriteData=0000a5 
+# 
+# 
+# t=000000 | ReadRegister1=06 | ReadRegister2=07 | WriteRegister=01 
+# w | ReadData2=00039f | ReadData1=000000 | WriteData=0000a5 
+# 
+# 
+# t=000000 | ReadRegister1=06 | ReadRegister2=07 | WriteRegister=01 
+# w | ReadData2=00018f | ReadData1=000399 | WriteData=0000a5 
+# 
+# 
+# t=000001 | ReadRegister1=07 | ReadRegister2=08 | WriteRegister=02 
+# w | ReadData2=0001df | ReadData1=000399 | WriteData=00025e 
+# 
+# 
+# t=000001 | ReadRegister1=07 | ReadRegister2=08 | WriteRegister=02 
+# w | ReadData2=0001d1 | ReadData1=000399 | WriteData=00025e 
+# 
+# 
+# t=000000 | ReadRegister1=07 | ReadRegister2=08 | WriteRegister=02 
+# w | ReadData2=000000 | ReadData1=00039f | WriteData=00025e 
+# 
+# 
+# t=000000 | ReadRegister1=07 | ReadRegister2=08 | WriteRegister=02 
+# w | ReadData2=0000c3 | ReadData1=00018f | WriteData=00025e 
+# 
+# 
+# t=000001 | ReadRegister1=08 | ReadRegister2=09 | WriteRegister=03 
+# w | ReadData2=0001ef | ReadData1=0001df | WriteData=0002f3 
+# 
+# 
+# t=000001 | ReadRegister1=08 | ReadRegister2=09 | WriteRegister=03 
+# w | ReadData2=00016d | ReadData1=0001d1 | WriteData=0002f3 
+# 
+# 
+# t=000000 | ReadRegister1=08 | ReadRegister2=09 | WriteRegister=03 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=0002f3 
+# 
+# 
+# t=000000 | ReadRegister1=08 | ReadRegister2=09 | WriteRegister=03 
+# w | ReadData2=0000ef | ReadData1=0000c3 | WriteData=0002f3 
+# 
+# 
+# t=000001 | ReadRegister1=09 | ReadRegister2=0a | WriteRegister=04 
+# w | ReadData2=000000 | ReadData1=0001ef | WriteData=0001fa 
+# 
+# 
+# t=000001 | ReadRegister1=09 | ReadRegister2=0a | WriteRegister=04 
+# w | ReadData2=00016b | ReadData1=00016d | WriteData=0001fa 
+# 
+# 
+# t=000000 | ReadRegister1=09 | ReadRegister2=0a | WriteRegister=04 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=0001fa 
+# 
+# 
+# t=000000 | ReadRegister1=09 | ReadRegister2=0a | WriteRegister=04 
+# w | ReadData2=000394 | ReadData1=0000ef | WriteData=0001fa 
+# 
+# 
+# t=000001 | ReadRegister1=0a | ReadRegister2=0b | WriteRegister=05 
+# w | ReadData2=000394 | ReadData1=000000 | WriteData=0000bf 
+# 
+# 
+# t=000001 | ReadRegister1=0a | ReadRegister2=0b | WriteRegister=05 
+# w | ReadData2=000394 | ReadData1=00016b | WriteData=0000bf 
+# 
+# 
+# t=000000 | ReadRegister1=0a | ReadRegister2=0b | WriteRegister=05 
+# w | ReadData2=0003ff | ReadData1=000000 | WriteData=0000bf 
+# 
+# 
+# t=000000 | ReadRegister1=0a | ReadRegister2=0b | WriteRegister=05 
+# w | ReadData2=00016b | ReadData1=000394 | WriteData=0000bf 
+# 
+# 
+# t=000001 | ReadRegister1=0b | ReadRegister2=0c | WriteRegister=06 
+# w | ReadData2=0001ef | ReadData1=000394 | WriteData=0000e6 
+# 
+# 
+# t=000001 | ReadRegister1=0b | ReadRegister2=0c | WriteRegister=06 
+# w | ReadData2=0000ef | ReadData1=000394 | WriteData=0000e6 
+# 
+# 
+# t=000000 | ReadRegister1=0b | ReadRegister2=0c | WriteRegister=06 
+# w | ReadData2=000000 | ReadData1=0003ff | WriteData=0000e6 
+# 
+# 
+# t=000000 | ReadRegister1=0b | ReadRegister2=0c | WriteRegister=06 
+# w | ReadData2=0000e3 | ReadData1=00016b | WriteData=0000e6 
+# 
+# 
+# t=000001 | ReadRegister1=0c | ReadRegister2=0d | WriteRegister=07 
+# w | ReadData2=0000e3 | ReadData1=0001ef | WriteData=000122 
+# 
+# 
+# t=000001 | ReadRegister1=0c | ReadRegister2=0d | WriteRegister=07 
+# w | ReadData2=0000e3 | ReadData1=0000ef | WriteData=000122 
+# 
+# 
+# t=000000 | ReadRegister1=0c | ReadRegister2=0d | WriteRegister=07 
+# w | ReadData2=0001ff | ReadData1=000000 | WriteData=000122 
+# 
+# 
+# t=000000 | ReadRegister1=0c | ReadRegister2=0d | WriteRegister=07 
+# w | ReadData2=0000f9 | ReadData1=0000e3 | WriteData=000122 
+# 
+# 
+# t=000001 | ReadRegister1=0d | ReadRegister2=0e | WriteRegister=08 
+# w | ReadData2=000000 | ReadData1=0000e3 | WriteData=000033 
+# 
+# 
+# t=000001 | ReadRegister1=0d | ReadRegister2=0e | WriteRegister=08 
+# w | ReadData2=000323 | ReadData1=0000e3 | WriteData=000033 
+# 
+# 
+# t=000000 | ReadRegister1=0d | ReadRegister2=0e | WriteRegister=08 
+# w | ReadData2=000000 | ReadData1=0001ff | WriteData=000033 
+# 
+# 
+# t=000000 | ReadRegister1=0d | ReadRegister2=0e | WriteRegister=08 
+# w | ReadData2=000322 | ReadData1=0000f9 | WriteData=000033 
+# 
+# 
+# t=000001 | ReadRegister1=0e | ReadRegister2=0f | WriteRegister=09 
+# w | ReadData2=000322 | ReadData1=000000 | WriteData=00022f 
+# 
+# 
+# t=000001 | ReadRegister1=0e | ReadRegister2=0f | WriteRegister=09 
+# w | ReadData2=000322 | ReadData1=000323 | WriteData=00022f 
+# 
+# 
+# t=000000 | ReadRegister1=0e | ReadRegister2=0f | WriteRegister=09 
+# w | ReadData2=000323 | ReadData1=000000 | WriteData=00022f 
+# 
+# 
+# t=000000 | ReadRegister1=0e | ReadRegister2=0f | WriteRegister=09 
+# w | ReadData2=000323 | ReadData1=000322 | WriteData=00022f 
+# 
+# 
+# t=000001 | ReadRegister1=0f | ReadRegister2=10 | WriteRegister=0a 
+# w | ReadData2=0003fb | ReadData1=000322 | WriteData=0001ef 
+# 
+# 
+# t=000001 | ReadRegister1=0f | ReadRegister2=10 | WriteRegister=0a 
+# w | ReadData2=0000f9 | ReadData1=000322 | WriteData=0001ef 
+# 
+# 
+# t=000000 | ReadRegister1=0f | ReadRegister2=10 | WriteRegister=0a 
+# w | ReadData2=000000 | ReadData1=000323 | WriteData=0001ef 
+# 
+# 
+# t=000000 | ReadRegister1=0f | ReadRegister2=10 | WriteRegister=0a 
+# w | ReadData2=0000a5 | ReadData1=000323 | WriteData=0001ef 
+# 
+# 
+# t=000001 | ReadRegister1=10 | ReadRegister2=11 | WriteRegister=0b 
+# w | ReadData2=000000 | ReadData1=0003fb | WriteData=00033e 
+# 
+# 
+# t=000001 | ReadRegister1=10 | ReadRegister2=11 | WriteRegister=0b 
+# w | ReadData2=000260 | ReadData1=0000f9 | WriteData=00033e 
+# 
+# 
+# t=000000 | ReadRegister1=10 | ReadRegister2=11 | WriteRegister=0b 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=00033e 
+# 
+# 
+# t=000000 | ReadRegister1=10 | ReadRegister2=11 | WriteRegister=0b 
+# w | ReadData2=000323 | ReadData1=0000a5 | WriteData=00033e 
+# 
+# 
+# t=000001 | ReadRegister1=11 | ReadRegister2=12 | WriteRegister=0c 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=0000ac 
+# 
+# 
+# t=000001 | ReadRegister1=11 | ReadRegister2=12 | WriteRegister=0c 
+# w | ReadData2=00026c | ReadData1=000260 | WriteData=0000ac 
+# 
+# 
+# t=000000 | ReadRegister1=11 | ReadRegister2=12 | WriteRegister=0c 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=0000ac 
+# 
+# 
+# t=000000 | ReadRegister1=11 | ReadRegister2=12 | WriteRegister=0c 
+# w | ReadData2=000045 | ReadData1=000323 | WriteData=0000ac 
+# 
+# 
+# t=000001 | ReadRegister1=12 | ReadRegister2=13 | WriteRegister=0d 
+# w | ReadData2=000045 | ReadData1=000000 | WriteData=000332 
+# 
+# 
+# t=000001 | ReadRegister1=12 | ReadRegister2=13 | WriteRegister=0d 
+# w | ReadData2=000045 | ReadData1=00026c | WriteData=000332 
+# 
+# 
+# t=000000 | ReadRegister1=12 | ReadRegister2=13 | WriteRegister=0d 
+# w | ReadData2=00026d | ReadData1=000000 | WriteData=000332 
+# 
+# 
+# t=000000 | ReadRegister1=12 | ReadRegister2=13 | WriteRegister=0d 
+# w | ReadData2=00026c | ReadData1=000045 | WriteData=000332 
+# 
+# 
+# t=000001 | ReadRegister1=13 | ReadRegister2=14 | WriteRegister=0e 
+# w | ReadData2=00036f | ReadData1=000045 | WriteData=0000d2 
+# 
+# 
+# t=000001 | ReadRegister1=13 | ReadRegister2=14 | WriteRegister=0e 
+# w | ReadData2=000323 | ReadData1=000045 | WriteData=0000d2 
+# 
+# 
+# t=000000 | ReadRegister1=13 | ReadRegister2=14 | WriteRegister=0e 
+# w | ReadData2=000000 | ReadData1=00026d | WriteData=0000d2 
+# 
+# 
+# t=000000 | ReadRegister1=13 | ReadRegister2=14 | WriteRegister=0e 
+# w | ReadData2=000210 | ReadData1=00026c | WriteData=0000d2 
+# 
+# 
+# t=000001 | ReadRegister1=14 | ReadRegister2=15 | WriteRegister=0f 
+# w | ReadData2=000210 | ReadData1=00036f | WriteData=0000a0 
+# 
+# 
+# t=000001 | ReadRegister1=14 | ReadRegister2=15 | WriteRegister=0f 
+# w | ReadData2=000210 | ReadData1=000323 | WriteData=0000a0 
+# 
+# 
+# t=000000 | ReadRegister1=14 | ReadRegister2=15 | WriteRegister=0f 
+# w | ReadData2=0002bf | ReadData1=000000 | WriteData=0000a0 
+# 
+# 
+# t=000000 | ReadRegister1=14 | ReadRegister2=15 | WriteRegister=0f 
+# w | ReadData2=000033 | ReadData1=000210 | WriteData=0000a0 
+# 
+# 
+# t=000001 | ReadRegister1=15 | ReadRegister2=16 | WriteRegister=10 
+# w | ReadData2=000000 | ReadData1=000210 | WriteData=0001b7 
+# 
+# 
+# t=000001 | ReadRegister1=15 | ReadRegister2=16 | WriteRegister=10 
+# w | ReadData2=0001ef | ReadData1=000210 | WriteData=0001b7 
+# 
+# 
+# t=000000 | ReadRegister1=15 | ReadRegister2=16 | WriteRegister=10 
+# w | ReadData2=000000 | ReadData1=0003bf | WriteData=0001b7 
+# 
+# 
+# t=000000 | ReadRegister1=15 | ReadRegister2=16 | WriteRegister=10 
+# w | ReadData2=00033e | ReadData1=000033 | WriteData=0001b7 
+# 
+# 
+# t=000001 | ReadRegister1=16 | ReadRegister2=17 | WriteRegister=11 
+# w | ReadData2=00033e | ReadData1=000000 | WriteData=0001fa 
+# 
+# 
+# t=000001 | ReadRegister1=16 | ReadRegister2=17 | WriteRegister=11 
+# w | ReadData2=00033e | ReadData1=0001ef | WriteData=0001fa 
+# 
+# 
+# t=000000 | ReadRegister1=16 | ReadRegister2=17 | WriteRegister=11 
+# w | ReadData2=0003ff | ReadData1=000000 | WriteData=0001fa 
+# 
+# 
+# t=000000 | ReadRegister1=16 | ReadRegister2=17 | WriteRegister=11 
+# w | ReadData2=0001ef | ReadData1=00033e | WriteData=0001fa 
+# 
+# 
+# t=000001 | ReadRegister1=17 | ReadRegister2=18 | WriteRegister=12 
+# w | ReadData2=0001ff | ReadData1=00033e | WriteData=0000d8 
+# 
+# 
+# t=000001 | ReadRegister1=17 | ReadRegister2=18 | WriteRegister=12 
+# w | ReadData2=000033 | ReadData1=00033e | WriteData=0000d8 
+# 
+# 
+# t=000000 | ReadRegister1=17 | ReadRegister2=18 | WriteRegister=12 
+# w | ReadData2=000000 | ReadData1=0003ff | WriteData=0000d8 
+# 
+# 
+# t=000000 | ReadRegister1=17 | ReadRegister2=18 | WriteRegister=12 
+# w | ReadData2=00022f | ReadData1=0001ef | WriteData=0000d8 
+# 
+# 
+# t=000001 | ReadRegister1=18 | ReadRegister2=19 | WriteRegister=13 
+# w | ReadData2=0002af | ReadData1=0001ff | WriteData=00000d 
+# 
+# 
+# t=000001 | ReadRegister1=18 | ReadRegister2=19 | WriteRegister=13 
+# w | ReadData2=0000a5 | ReadData1=000033 | WriteData=00000d 
+# 
+# 
+# t=000000 | ReadRegister1=18 | ReadRegister2=19 | WriteRegister=13 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=00000d 
+# 
+# 
+# t=000000 | ReadRegister1=18 | ReadRegister2=19 | WriteRegister=13 
+# w | ReadData2=0001fa | ReadData1=00022f | WriteData=00000d 
+# 
+# 
+# t=000001 | ReadRegister1=19 | ReadRegister2=1a | WriteRegister=14 
+# w | ReadData2=000000 | ReadData1=0002af | WriteData=000374 
+# 
+# 
+# t=000001 | ReadRegister1=19 | ReadRegister2=1a | WriteRegister=14 
+# w | ReadData2=0000e6 | ReadData1=0000a5 | WriteData=000374 
+# 
+# 
+# t=000000 | ReadRegister1=19 | ReadRegister2=1a | WriteRegister=14 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=000374 
+# 
+# 
+# t=000000 | ReadRegister1=19 | ReadRegister2=1a | WriteRegister=14 
+# w | ReadData2=000122 | ReadData1=0001fa | WriteData=000374 
+# 
+# 
+# t=000001 | ReadRegister1=1a | ReadRegister2=1b | WriteRegister=15 
+# w | ReadData2=000122 | ReadData1=000000 | WriteData=00037f 
+# 
+# 
+# t=000001 | ReadRegister1=1a | ReadRegister2=1b | WriteRegister=15 
+# w | ReadData2=000122 | ReadData1=0000e6 | WriteData=00037f 
+# 
+# 
+# t=000000 | ReadRegister1=1a | ReadRegister2=1b | WriteRegister=15 
+# w | ReadData2=0001e6 | ReadData1=000000 | WriteData=00037f 
+# 
+# 
+# t=000000 | ReadRegister1=1a | ReadRegister2=1b | WriteRegister=15 
+# w | ReadData2=0000e6 | ReadData1=000122 | WriteData=00037f 
+# 
+# 
+# t=000001 | ReadRegister1=1b | ReadRegister2=1c | WriteRegister=16 
+# w | ReadData2=0001fe | ReadData1=000122 | WriteData=0000b4 
+# 
+# 
+# t=000001 | ReadRegister1=1b | ReadRegister2=1c | WriteRegister=16 
+# w | ReadData2=0001fa | ReadData1=000122 | WriteData=0000b4 
+# 
+# 
+# t=000000 | ReadRegister1=1b | ReadRegister2=1c | WriteRegister=16 
+# w | ReadData2=000000 | ReadData1=0001e6 | WriteData=0000b4 
+# 
+# 
+# t=000000 | ReadRegister1=1b | ReadRegister2=1c | WriteRegister=16 
+# w | ReadData2=0000bf | ReadData1=0000e6 | WriteData=0000b4 
+# 
+# 
+# t=000001 | ReadRegister1=1c | ReadRegister2=1d | WriteRegister=17 
+# w | ReadData2=0000bf | ReadData1=0001fe | WriteData=0000c1 
+# 
+# 
+# t=000001 | ReadRegister1=1c | ReadRegister2=1d | WriteRegister=17 
+# w | ReadData2=0000bf | ReadData1=0001fa | WriteData=0000c1 
+# 
+# 
+# t=000000 | ReadRegister1=1c | ReadRegister2=1d | WriteRegister=17 
+# w | ReadData2=0001ff | ReadData1=000000 | WriteData=0000c1 
+# 
+# 
+# t=000000 | ReadRegister1=1c | ReadRegister2=1d | WriteRegister=17 
+# w | ReadData2=0001a4 | ReadData1=0000bf | WriteData=0000c1 
+# 
+# 
+# t=000001 | ReadRegister1=1d | ReadRegister2=1e | WriteRegister=18 
+# w | ReadData2=000000 | ReadData1=0000bf | WriteData=000005 
+# 
+# 
+# t=000001 | ReadRegister1=1d | ReadRegister2=1e | WriteRegister=18 
+# w | ReadData2=00025e | ReadData1=0000bf | WriteData=000005 
+# 
+# 
+# t=000000 | ReadRegister1=1d | ReadRegister2=1e | WriteRegister=18 
+# w | ReadData2=000000 | ReadData1=0001ff | WriteData=000005 
+# 
+# 
+# t=000000 | ReadRegister1=1d | ReadRegister2=1e | WriteRegister=18 
+# w | ReadData2=0002f3 | ReadData1=0001a4 | WriteData=000005 
+# 
+# 
+# t=000001 | ReadRegister1=1e | ReadRegister2=1f | WriteRegister=19 
+# w | ReadData2=0002f3 | ReadData1=000000 | WriteData=000123 
+# 
+# 
+# t=000001 | ReadRegister1=1e | ReadRegister2=1f | WriteRegister=19 
+# w | ReadData2=0002f3 | ReadData1=00025e | WriteData=000123 
+# 
+# 
+# t=000000 | ReadRegister1=1e | ReadRegister2=1f | WriteRegister=19 
+# w | ReadData2=0002ff | ReadData1=000000 | WriteData=000123 
+# 
+# 
+# t=000000 | ReadRegister1=1e | ReadRegister2=1f | WriteRegister=19 
+# w | ReadData2=00025e | ReadData1=0002f3 | WriteData=000123 
+# 
+# 
+# t=000001 | ReadRegister1=1f | ReadRegister2=00 | WriteRegister=1a 
+# w | ReadData2=0003fe | ReadData1=0002f3 | WriteData=0002b2 
+# 
+# 
+# t=000001 | ReadRegister1=1f | ReadRegister2=00 | WriteRegister=1a 
+# w | ReadData2=0001a4 | ReadData1=0002f3 | WriteData=0002b2 
+# 
+# 
+# t=000000 | ReadRegister1=1f | ReadRegister2=00 | WriteRegister=1a 
+# w | ReadData2=000000 | ReadData1=0002ff | WriteData=0002b2 
+# 
+# 
+# t=000000 | ReadRegister1=1f | ReadRegister2=00 | WriteRegister=1a 
+# w | ReadData2=0001fa | ReadData1=00025e | WriteData=0002b2 
+# 
+# 
+# t=000001 | ReadRegister1=00 | ReadRegister2=01 | WriteRegister=1b 
+# w | ReadData2=000000 | ReadData1=0003fe | WriteData=000389 
+# 
+# 
+# t=000001 | ReadRegister1=00 | ReadRegister2=01 | WriteRegister=1b 
+# w | ReadData2=0000c3 | ReadData1=0001a4 | WriteData=000389 
+# 
+# 
+# t=000000 | ReadRegister1=00 | ReadRegister2=01 | WriteRegister=1b 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=000389 
+# 
+# 
+# t=000000 | ReadRegister1=00 | ReadRegister2=01 | WriteRegister=1b 
+# w | ReadData2=000351 | ReadData1=0001fa | WriteData=000389 
+# 
+# 
+# t=000001 | ReadRegister1=01 | ReadRegister2=02 | WriteRegister=1c 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=0002e2 
+# 
+# 
+# t=000001 | ReadRegister1=01 | ReadRegister2=02 | WriteRegister=1c 
+# w | ReadData2=000205 | ReadData1=0000c3 | WriteData=0002e2 
+# 
+# 
+# t=000000 | ReadRegister1=01 | ReadRegister2=02 | WriteRegister=1c 
+# w | ReadData2=000000 | ReadData1=000000 | WriteData=0002e2 
+# 
+# 
+# t=000000 | ReadRegister1=01 | ReadRegister2=02 | WriteRegister=1c 
+# w | ReadData2=000000 | ReadData1=000351 | WriteData=0002e2 
+# 
+# 
+# Simulation stop requested.
+# quit -f
+# End time: 19:33:48 on Nov 30,2021, Elapsed time: 0:00:10
+# Errors: 1, Warnings: 1
+make: *** [Makefile:39: simulate] Interrupt

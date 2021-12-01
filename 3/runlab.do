@@ -43,7 +43,7 @@ vlog "./register_bank_32.sv"
 #     Make sure the last item on the line is the name of the
 #     testbench module you want to execute.
 # There's an argument --timescale 1ps/1ps to set global default timescale; doesn't work here, works in Makefile
-vsim -voptargs="+acc" -t 1ps -lib work tb
+vsim -voptargs="+acc" -t 1ps -lib work rf_tb
 
 # Source the wave do file
 #     This should be the file that sets up the signal window for

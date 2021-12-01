@@ -1,4 +1,4 @@
-TEST_MODULE = tb
+TEST_MODULE = rf_tb
 
 SOURCES = \
   ./D_FF.sv \

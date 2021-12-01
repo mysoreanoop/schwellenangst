@@ -1,46 +1,63 @@
 ///REGFILE - 64bit 32 regs 
 //implement write data bypass on read-write addr conflict
-module regfile(ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, WriteRegister, RegWrite, clk);
- input logic clk, RegWrite;
- input logic [4:0] ReadRegister1, ReadRegister2, WriteRegister;
- input logic [63:0] WriteData;
- output logic [63:0] ReadData2, ReadData1;
+`timescale 1ps/1ps
+module regfile #(parameter delay = 50)
+    (ReadData1, ReadData2, WriteData,
+    ReadRegister1, ReadRegister2, WriteRegister,
+    RegWrite, clk);
+  input logic clk, RegWrite;
+  input logic [4:0] ReadRegister1, ReadRegister2, WriteRegister;
+  input logic [63:0] WriteData;
+  output logic [63:0] ReadData2, ReadData1;
+  reg rst;
+  initial rst = 0;
 
- reg [0:31][63:0] mem;
- assign ReadData1 = ReadRegister1 != '1 ? mem[ReadRegister1] : '0;
- assign ReadData2 = ReadRegister2 != '1 ? mem[ReadRegister2] : '0;
- always@(posedge clk) begin
-  mem[31] <= '0;
-  //if(ReadRegister1 == '1) 
-  //  ReadData1 <= '0;
-  //else ReadData1 <= mem[ReadRegister1];
+  logic [31:0][63:0] ro, ri; // Wired into and out of register bank below
+  logic [31:0] we; // Individualized wires to enable each of the Registers exclusively
 
-  //if(ReadRegister2 == '1)
-  //  ReadData2 <= '0;
-  //else ReadData2 <= mem[ReadRegister2];
- end
- always@(posedge clk) begin
-  if(RegWrite)
-    if(WriteRegister != '1)
-      mem[WriteRegister] <= WriteData;
- end
-// reg rst;
-// initial rst = 0;
-// 
-// logic [31:0][63:0] ro, ri; //register bank out, in
-// logic [31:0] we;
+  //mux64  m0(.out(ReadData1), .in(ro), .read_reg(ReadRegister1));
+  //mux64  m1(.out(ReadData2), .in(ro), .read_reg(ReadRegister2));
+  assign ReadData1 = ro[ReadRegister1]; This works, above doesn't
+  assign ReadData2 = ro[ReadRegister2];
+
+  decoder5_32  d(WriteRegister, we, RegWrite);
+
+  // The Compendium of Registers each fed from WriteData
+  logic nclk;
+  not n(nclk, clk);
+  register_bank_32 r(.data_out(ro), .data_in(ri), .clk(clk), .reset(1'b0), .write_en(we));
+  genvar i;
+    for(i=0; i<32; i++) assign ri[i] = WriteData;
+endmodule
+
+//module regfile #(parameter delay = 50) (ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, WriteRegister, RegWrite, clk);
+//  input logic clk, RegWrite;
+//  input logic [4:0] ReadRegister1, ReadRegister2, WriteRegister;
+//  input logic [63:0] WriteData;
+//  output logic [63:0] ReadData2, ReadData1;
+//  
+//  logic [31:0][63:0] ro, ri; // Wired into and out of register bank below
+//  //reg [0:31][63:0] mem;
+//  //assign ReadData1 = mem[ReadRegister1];
+//  //assign ReadData2 = mem[ReadRegister2];
+//  mux64  m0(.out(ReadData1), .in(ro), .read_reg(ReadRegister1));
+//  mux64  m1(.out(ReadData2), .in(ro), .read_reg(ReadRegister2));
+//  decoder5_32  d(WriteRegister, we, RegWrite);
+//  register_bank_32 r(.data_out(ro), .data_in(ri), .clk(nclk), .reset(rst), .write_en(we));
+//  always@(negedge clk) begin
+//    //mem[31] <= '0;
+//    ri[31] <= '0;
+//    if(RegWrite)
+//      if(WriteRegister != '1) begin
+//        //mem[WriteRegister] <= WriteData;A
+//        ri[WriteRegister] <= WriteData;
+//        
+//      end
+//  end
 //
-// mux64 m0(ReadData1, ro, ReadRegister1);
-// mux64 m1(ReadData2, ro, ReadRegister2);
-// decoder5_32 d(WriteRegister, we, RegWrite);
-// register_bank_32 r(.data_out(ro), .data_in(ri), .clk(clk), .reset(rst), .write_en(we));
-//
-// genvar i;
-// for(i=0; i<32; i++) assign ri[i] = WriteData;
-
- always @(negedge clk)
-  $strobe("RF Inside:%x %x %x %x %x %x %b\n", ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, WriteRegister, RegWrite);
-endmodule 
+//  always @(negedge clk)
+//    $display("RF Inside:%x %x %x %x %x %x %b\n", ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, WriteRegister, RegWrite);
+//endmodule 
  
 module rf_tb(); 
  logic clk, rst;
@@ -51,33 +68,40 @@ module rf_tb();
  reg [4:0] WriteRegister;
  reg [63:0] WriteData;
  logic [63:0] ReadData2, ReadData1;
+ reg [8:0] inc;
 
  regfile dut(ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, WriteRegister, RegWrite, clk);
  
  initial begin
  clk=0;
  rst=1;
- #100 rst = 0;
- forever #100 clk = ~clk;
+ #500 rst = 0;
  end
+ initial
+  forever #100 clk = ~clk;
  integer i;
  always_ff @(posedge clk) begin
-  if(~rst) begin
-  ReadRegister1 <= $urandom%32; 
-  ReadRegister2 <= $urandom%32; 
-  WriteRegister <= $urandom%32; 
-  WriteData <= $urandom%999;
-  RegWrite <= $urandom%2;
   if(rst) begin
-    for(i=0; i<32; i++) _rf[i] <= 0;
+    inc <= '0;
+    _rf[31] <= '0;
+    for(i=0; i<31; i++) _rf[i] <= 'x;
   end
-  if(RegWrite) _rf[WriteRegister] <= WriteData;
   else begin
-   assert((_rf[ReadRegister1] === ReadData1) && (_rf[ReadRegister2] === ReadData2)) $display("Jesus is real!"); //AM: Turns out === matches X's as well; == doesn't!!
-    else $error("Read %6x %6x; doesn't match local registry's %6x %6x!!", _rf[ReadRegister1], _rf[ReadRegister2], ReadData1, ReadData2);
-  end
+    inc <= inc + 9'b1;
+    _rf[31] <= '0;
+    ReadRegister1 <= inc+9'd5;
+    ReadRegister2 <= inc+9'd6;
+    WriteRegister <= inc;
+    WriteData <= $urandom%999;
+    RegWrite <= 1'b1;
+    if(RegWrite && (WriteRegister != '1)) 
+      _rf[WriteRegister] <= WriteData;
+    else begin
+     assert((_rf[ReadRegister1] === ReadData1) && (_rf[ReadRegister2] === ReadData2)) $display("All is well"); //AM: Turns out === matches X's as well; == doesn't!!
+      else $error("Read %6x %6x from local reg; doesn't match DUT's %6x %6x @%x %x!!", _rf[ReadRegister1], _rf[ReadRegister2], ReadData1, ReadData2, ReadRegister1, ReadRegister2);
+    end
   end
  end
- initial $monitor("t=%6x | ReadRegister1=%d | ReadRegister2=%d | WriteRegister=%d \n",clk, ReadRegister1, ReadRegister2, WriteRegister,
+ initial $monitor("t=%6x | ReadRegister1=%x | ReadRegister2=%x | WriteRegister=%x \n",clk, ReadRegister1, ReadRegister2, WriteRegister,
            "%s | ReadData2=%6x | ReadData1=%6x | WriteData=%6x \n\n", (RegWrite)? "w" : "r", ReadData2, ReadData1, WriteData);
 endmodule 
