@@ -26,6 +26,7 @@ input logic [3:0] opcode;
       : opcode == `LSL || opcode == `LSR ? 2'd3
         : 2'd0;
   assign Reg2Loc = ~(opcode == `STUR || opcode == `CBZ);
+  //assign RegWrite = ~(opcode == `B || opcode == `BLT|| opcode == `CBZ|| opcode == `STUR);
   assign RegWrite = ~(opcode == `B || opcode == `BLT|| opcode == `CBZ|| opcode == `STUR) && opcode != `INV;
   assign MemWrite = opcode == `STUR;
   assign ALUOp = opcode == `SUBS ? 3'd3 : (opcode == `CBZ ? 3'd0 : 3'd2);

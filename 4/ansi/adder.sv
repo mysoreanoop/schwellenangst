@@ -2,14 +2,14 @@
 
 module fa (input a, input b, input ci, output s, output co); // adds 3 1bit inputs, gives sum,carry
 	logic c0, c1, _s;
-	parameter delay = 0;
+	parameter delay = 50;
 	ha  h0 (a, b, c0, _s);  // using 2 half adders 
 	ha  h1 (ci, _s, c1, s);
 	or #delay o (co, c0, c1); // carry out
 endmodule
 
 module ha (input a, input b, output c, output s); // adds 2 1bit inputs, gives sum, carry
-	parameter delay = 0;
+	parameter delay = 50;
 	xor #delay x (s, a, b);  // sum
 	and #delay n (c, a, b);  // carry 
 endmodule

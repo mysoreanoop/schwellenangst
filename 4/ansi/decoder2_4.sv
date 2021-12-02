@@ -6,7 +6,7 @@ input logic [1:0] in;
 input logic e;
 logic inn[1:0];
 
-parameter delay = 0; 
+parameter delay = 50; 
 not #delay n0(inn[0],in[0]);
 not #delay n1(inn[1],in[1]);
 and #delay a0(out[0],inn[1],inn[0],e); //out

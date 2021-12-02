@@ -5,7 +5,7 @@ input logic in;
 input logic e;
 logic inn;
 
-parameter delay = 0; 
+parameter delay = 50; 
 not #delay n0(inn,in);
 
 and #delay a0(out[0],inn,e); //out

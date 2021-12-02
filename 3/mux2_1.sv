@@ -7,7 +7,7 @@ module mux2_1 (out, in, sel);  //2:1 mux
 	logic seln;
 	logic [1:0]x; //wires
 
-	parameter delay = 0;	
+	parameter delay = 50;	
 	not #delay n0(seln,sel); //~Sel
 	and #delay a0(x[0],in[0],seln); // connecting gates 
 	and #delay a1(x[1],in[1],sel);

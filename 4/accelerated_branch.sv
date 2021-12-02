@@ -18,19 +18,20 @@
 `define SUBS 11
 `define INV  12
 
-module accelerated_branch(pc_br,BrTaken, pc_out, db,n,o,opcode,imm19,imm26);
+module accelerated_branch(pc_br,BrTaken, pc_out, db,n,o,_n,_o,opcode,opcode_ID,imm19,imm26);
 
 output logic [63:0] pc_br;
 output logic BrTaken;
 
-input logic n,o;  // negative and overflow flags from prev cycle (out of regs)
+input logic n,o,_n,_o;  // negative and overflow flags from prev cycle (out of regs)
 input logic [63:0] db;// take db wire after forwarding muxes
 input logic [63:0] pc_out;
-input logic [3:0] opcode;
+input logic [3:0] opcode,opcode_ID;
 input logic [63:0] imm19;
 input logic [63:0] imm26;
-
+logic n_f,o_f;
 logic UncondBr;
+logic flag_sel;
 //check condition for B.LT
 
 parameter delay=50;
@@ -59,9 +60,11 @@ genvar i;
 		nor #delay ax5 (zero, tr[0], tr[1]); // nor gate at the end to give high when inputs are 0
 	endgenerate
 
-	
-assign BrTaken = (opcode == `B || (opcode == `BLT) &&  (n ^ o) || (opcode == `CBZ) && zero);
-assign UncondBr = ~((opcode == `BLT) && (n ^ o) || (opcode == `CBZ) && zero);
+assign flag_sel= (opcode_ID==`SUBS||opcode_ID==`ADDS); // 1 if ALU is doing S in current cycle -"forward flags"
+mux2_1 mn(n_f, {_n,n}, flag_sel);
+mux2_1 mo(o_f, {_o,o}, flag_sel);
+assign BrTaken = (opcode == `B || (opcode == `BLT) &&  (n_f ^ o_f) || (opcode == `CBZ) && zero);
+assign UncondBr = ~((opcode == `BLT) && (n_f ^ o_f) || (opcode == `CBZ) && zero);
 
 
 

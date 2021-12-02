@@ -14,32 +14,28 @@ always_comb begin
 // for Addr_A (compare source reg a (Rn) - with Rd of prev 2) give priority to dest_ex
 
 
-  // Test this
-  if((addr_a != 5'd31)&&(addr_a== dest_ex)&&(regwr_ex==1'b1))
-	  forward_a= 2'd1; // forward ALU value from EX
+// Test this
+if((addr_a != 5'd31)&&(addr_a== dest_ex)&&(regwr_ex==1'b1))
+	assign forward_a= 2'd1; // forward ALU value from EX
 	
-	else begin
-    if ((addr_a != 5'd31)&&(addr_a == dest_mem)&&(regwr_mem==1'b1))
-	    forward_a= 2'd2; // forward Mem value 
+	else if ((addr_a != 5'd31)&&(addr_a == dest_mem)&&(regwr_mem==1'b1))
+	assign forward_a= 2'd2; // forward Mem value 
 	
-	  else 
-	    forward_a=2'd0; // no forwarding
-  end
+	else 
+	assign forward_a=2'd0; // no forwarding
 
-  // for Addr_B (compare source reg b (Rm) w Rd of prev 2)
-  
-  if((addr_b != 5'd31)&&(addr_b== dest_ex)&&(regwr_ex==1'b1))
-  	forward_b= 2'd1; // forward ALU value from EX
-	
-	else begin
-    if ((addr_b != 5'd31)&&(addr_b == dest_mem)&&(regwr_mem ==1'b1))
-	    forward_b= 2'd2; // forward Mem value 
-	
-	  else 
-	    forward_b=2'd0; // no forwarding
-  end
+// for Addr_B (compare source reg b (Rm) w Rd of prev 2)
 
-end 
+if((addr_b != 5'd31)&&(addr_b== dest_ex)&&(regwr_ex==1'b1))
+	assign forward_b= 2'd1; // forward ALU value from EX
+	
+	else if ((addr_b != 5'd31)&&(addr_b == dest_mem)&&(regwr_mem ==1'b1))
+	assign forward_b= 2'd2; // forward Mem value 
+	
+	else 
+	assign forward_b=2'd0; // no forwarding
+
+	end 
 	
 endmodule 
 

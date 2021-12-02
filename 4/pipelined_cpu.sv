@@ -84,12 +84,17 @@ logic [63:0] alu_out, alu_o,alu_o_EX, alu_out_EX;
 logic [4:0] Rd_ID, Rn_ID, Rm_ID;
 
 //forwarding fwd(forward_a,forward_b,Rn,Rm,Rd_EX,RegWrite_EX,Rd_MEM,RegWrite_MEM);
+//forwarding fwd(forward_a,forward_b,Rn,Rm,Rd_ID,RegWrite_ID,Rd_EX,RegWrite_EX);
+
 forwarding fwd(forward_a,forward_b,Rn,Ab,Rd_ID,RegWrite_ID,Rd_EX,RegWrite_EX);
 
 
 // forwarding MUXES - 4:1 in- regfile a/b, aluout, memout 0-reg, 1- ex 2-mem
-mux4 fwd_a(da, Da, alu_o, alu_o_EX, '0,forward_a); // new
-mux4 fwd_b(db, Db, alu_o, alu_o_EX, '0,forward_b); //USE da db  IN ALU after reg
+mux4 fwd_a(da, Da, alu_o, Dw, '0,forward_a); // NEWW
+mux4 fwd_b(db, Db, alu_o, Dw, '0,forward_b); //
+
+//mux4 fwd_a(da, Da, alu_o, alu_o_EX, '0,forward_a); // new
+//mux4 fwd_b(db, Db, alu_o, alu_o_EX, '0,forward_b); //USE da db  IN ALU after reg
 //mux4 fwd_a(da, Da, alu_out, alu_out_EX, '0,forward_a); //ORIGINAL
 //mux4 fwd_b(db, Db, alu_out, alu_out_EX, '0,forward_b); //USE da db  IN ALU after reg
 
@@ -99,7 +104,11 @@ mux4 fwd_b(db, Db, alu_o, alu_o_EX, '0,forward_b); //USE da db  IN ALU after reg
 //mux4 fwd_b(db, Db, alu_out, mem_out, '0,'0); //USE da db  IN ALU
 
 //accelerated branch unit
-accelerated_branch accb(pc_br,BrTaken, pc_IF, db,_n,_o,opcode,imm19,imm26);
+//accelerated_branch accb(pc_br,BrTaken, pc_IF, db,_n,_o,opcode,imm19,imm26);
+accelerated_branch accb(pc_br,BrTaken, pc_IF, db,n,o,_n,_o,opcode,opcode_ID,imm19,imm26);
+
+
+//check flags 
 
 //intermediate RF registers
 //register_v (#1) Reg2Loc_IF_reg(Reg2Loc_IF, Reg2Loc, clk, reset, 1'b1);  
@@ -121,7 +130,7 @@ register_v #(256) Imm_ID_reg({imm9_ID,imm12_ID,imm26_ID,imm19_ID}, {imm9,imm12,i
 // Rd Rn outputs 
 register_v #(5) Rd_ID_reg(Rd_ID, Rd, clk, reset, 1'b1); 
 register_v #(5) Rn_ID_reg(Rn_ID, Rn, clk, reset, 1'b1); 
-register_v #(5) Rm_ID_reg(Rm_ID, Ab, clk, reset, 1'b1); 
+register_v #(5) Rm_ID_reg(Rm_ID, Rm, clk, reset, 1'b1); 
 
 register_v #(6) shamt_ID_reg(shamt_ID, shamt, clk, reset, 1'b1); 
 register_v #(4) opcode_ID_reg(opcode_ID, opcode, clk, reset, 1'b1); 

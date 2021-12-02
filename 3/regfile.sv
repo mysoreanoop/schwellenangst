@@ -13,17 +13,17 @@ module regfile #(parameter delay = 50)
   logic [31:0][63:0] ro, ri; // Wired into and out of register bank below
   logic [31:0] we; // Individualized wires to enable each of the Registers exclusively
 
-  //mux64  m0(.out(ReadData1), .in(ro), .read_reg(ReadRegister1));
-  //mux64  m1(.out(ReadData2), .in(ro), .read_reg(ReadRegister2));
-  assign ReadData1 = ro[ReadRegister1]; //This works, above doesn't
-  assign ReadData2 = ro[ReadRegister2];
+  mux64  m0(.out(ReadData1), .in(ro), .read_reg(ReadRegister1));
+  mux64  m1(.out(ReadData2), .in(ro), .read_reg(ReadRegister2));
+  //assign ReadData1 = ro[ReadRegister1]; //This works, above doesn't
+  //assign ReadData2 = ro[ReadRegister2];
 
   decoder5_32  d(WriteRegister, we, RegWrite);
 
   // The Compendium of Registers each fed from WriteData
   logic nclk;
   not n(nclk, clk);
-  register_bank_32 r(.data_out(ro), .data_in(ri), .clk(clk), .reset(1'b0), .write_en(we));
+  register_bank_32 r(.data_out(ro), .data_in(ri), .clk(nclk), .reset(1'b0), .write_en(we));
   genvar i;
     for(i=0; i<32; i++) assign ri[i] = WriteData;
 

@@ -9,8 +9,7 @@ module regfile #(parameter delay = 50)
   input logic [4:0] ReadRegister1, ReadRegister2, WriteRegister;
   input logic [63:0] WriteData;
   output logic [63:0] ReadData2, ReadData1;
-  reg rst;
-  initial rst = 0;
+
 
   logic [31:0][63:0] ro, ri; // Wired into and out of register bank below
   logic [31:0] we; // Individualized wires to enable each of the Registers exclusively
@@ -25,9 +24,25 @@ module regfile #(parameter delay = 50)
   // The Compendium of Registers each fed from WriteData
   logic nclk;
   not n(nclk, clk);
-  register_bank_32 r(.data_out(ro), .data_in(ri), .clk(clk), .reset(1'b0), .write_en(we));
+  register_bank_32 r(.data_out(ro), .data_in(ri), .clk(nclk), .reset(1'b0), .write_en(we));
   genvar i;
     for(i=0; i<32; i++) assign ri[i] = WriteData;
+
+  always @(posedge clk)
+    $display("RF:\n %d \n %d \n %d \n %d \n %d \n %d \n %d \n %d \n %d \n %d \nRFEND\n", 
+    ro[0],
+    ro[1],
+    ro[2],
+    ro[3],
+    ro[4],
+    ro[5],
+    ro[6],
+    ro[7],
+    ro[8],
+    ro[9]);
+  always @(posedge clk) 
+    if(RegWrite) 
+      $display("WRITING: %d to %d", WriteData, WriteRegister);
 endmodule
 
 //module regfile #(parameter delay = 50) (ReadData1, ReadData2, WriteData, ReadRegister1, ReadRegister2, WriteRegister, RegWrite, clk);

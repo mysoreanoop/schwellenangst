@@ -10,8 +10,8 @@
 //`define BENCHMARK "../benchmarks/test05_Blt.arm" //done
 //`define BENCHMARK "../benchmarks/test06_MulLslLsr.arm"  // done
 //`define BENCHMARK "../benchmarks/test10_forwarding.arm" //pending
-`define BENCHMARK "../benchmarks/test11_Sort.arm" //pending
-//`define BENCHMARK "../benchmarks/test12_Division.arm" //pending
+//`define BENCHMARK "../benchmarks/test11_Sort.arm" //pending
+`define BENCHMARK "../benchmarks/test12_Division.arm" //pending
 
 `timescale 1ns/10ps
 

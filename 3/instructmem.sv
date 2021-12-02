@@ -4,12 +4,12 @@
 //
 // To change the file that is loaded, edit the filename here:
 //`define BENCHMARK "../benchmarks/test01_AddiB.arm" //done
-`define BENCHMARK "../benchmarks/test02_AddsSubs.arm" //done
+//`define BENCHMARK "../benchmarks/test02_AddsSubs.arm" //done
 //`define BENCHMARK "../benchmarks/test03_CbzB.arm" // done
 //`define BENCHMARK "../benchmarks/test04_LdurStur.arm" //done
 //`define BENCHMARK "../benchmarks/test05_Blt.arm" //done
 //`define BENCHMARK "../benchmarks/test06_MulLslLsr.arm"  // done
-//`define BENCHMARK "../benchmarks/test10_forwarding.arm" //pending
+`define BENCHMARK "../benchmarks/test10_forwarding.arm" //pending
 //`define BENCHMARK "../benchmarks/test11_Sort.arm" //pending
 //`define BENCHMARK "../benchmarks/test12_Division.arm" //pending
 `timescale 1ns/10ps
