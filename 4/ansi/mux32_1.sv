@@ -2,6 +2,7 @@ module mux32_1(out, in ,sel);
  output logic out; 
  input logic [31:0] in; 
  input logic [4:0]sel;
+ //assign out = in[sel];
  logic [3:0]x; //wires
  //mux2_1(out, in, sel);
  

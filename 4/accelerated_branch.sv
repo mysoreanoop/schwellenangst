@@ -27,8 +27,8 @@ input logic n,o;  // negative and overflow flags from prev cycle (out of regs)
 input logic [63:0] db;// take db wire after forwarding muxes
 input logic [63:0] pc_out;
 input logic [3:0] opcode;
-input logic [18:0] imm19;
-input logic [25:0] imm26;
+input logic [63:0] imm19;
+input logic [63:0] imm26;
 
 logic UncondBr;
 //check condition for B.LT
@@ -68,14 +68,15 @@ assign UncondBr = ~((opcode == `BLT) && (n ^ o) || (opcode == `CBZ) && zero);
 
  //adder for target PC computation
   logic [63:0] ls_in, ax, o0, o1;
-  logic [63:0] _imm19, _imm26;
-  se #(19) se1 (_imm19,imm19);
-  se #(26) se2 (_imm26,imm26);
-  mux2 m_pc(ls_in, _imm19, _imm26, UncondBr);
+//  logic [63:0] _imm19, _imm26;
+//  se #(19) se1 (_imm19,imm19);
+//  se #(26) se2 (_imm26,imm26);
+//  mux2 m_pc(ls_in, _imm19, _imm26, UncondBr);
+  mux2 m_pc(ls_in, imm19, imm26, UncondBr);
   LS_2 ls(ax, ls_in); // left shift 2 (mul4)
                                  //add a4(o0, pc_reg, 64'h4); //pc+4 do this in IF stage
   add a_br(pc_br, pc_out, ax); // pc+ branch addr
-
+//     add a_br(pc_br, pc_out, ls_in<<2);
 
 endmodule 
 
