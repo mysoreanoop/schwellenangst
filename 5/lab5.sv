@@ -246,31 +246,55 @@ module lab5_testbench ();
 	initial begin
 		dummy_data <= '0;
 		resetMem();				// Initialize the memory.
-		for (k=1; k<32; k++) begin
-      r=$urandom%k;
-      q=$urandom%k;
-      for (j=r; j<q; j++) begin
-		    for (i=0; i<128; i++) begin
-		    	addr = (j<<16) + (i<<3);
+		//for (k=1; k<32; k++) begin
+    //  r=$urandom%k;
+    //  q=$urandom%k;
+    //  for (j=0; j<k; j++) begin
+		//    for (i=0; i<16; i++) begin
+		//    	addr = (j<<15) + (i<<3);
+		//    	readMem(addr, dummy_data, delay);
+		//    	$display("Read took %d cycles @%x", delay, addr);
+		//    end
+		// 	  $display("\n");
+		//    for (i=0; i<16; i++) begin
+		//    	addr = 20'h00000+(i<<3);
+		//    	readMem(addr, dummy_data, delay);
+		//    	$display("Read took %d cycles @%x", delay, addr);
+		//    end
+		//	  $display("\n");
+    //  end
+    //end
+
+		for (i=0; i<32; i++) begin
+			addr = (1<<15) + (i<<3);
+			dummy_data = i;
+			writeMem(addr, dummy_data, 8'hFF, delay);
+			$display("Write took %d cycles to %x", delay, addr);
+		end
+    $display("\n");
+		for (i=0; i<32; i++) begin
+		    	addr = (1<<15)+(i<<3);
 		    	readMem(addr, dummy_data, delay);
 		    	$display("Read took %d cycles @%x", delay, addr);
-		    end
-		 	  $display("\n");
-		    //for (i=0; i<16; i++) begin
-		    //	addr = 20'h10000+(i<<3);
-		    //	readMem(addr, dummy_data, delay);
-		    //	$display("Read took %d cycles @%x", delay, addr);
-		    //end
-			  //$display("\n");
-      end
-    end
-
-		//for (i=0; i<128; i++) begin
-		//	addr = $random()*8; // *8 to doubleword-align the access.
-		//	dummy_data = $random();
+		//	addr = (0<<15) + (i<<3);
+		//	dummy_data = i;
 		//	writeMem(addr, dummy_data, 8'hFF, delay);
-		//	$display("Write took %d cycles", delay);
-		//end
+		//	$display("Write took %d cycles to %x", delay, addr);
+		end
+    $display("\n");
+		for (i=0; i<32; i++) begin
+			addr = (2<<15) + (i<<3);
+			dummy_data = i;
+			writeMem(addr, dummy_data, 8'hFF, delay);
+			$display("Write took %d cycles to %x", delay, addr);
+		end
+    $display("\n");
+		for (i=0; i<32; i++) begin
+			addr = (1<<15) + (i<<3);
+			dummy_data = i;
+			writeMem(addr, dummy_data, 8'hFF, delay);
+			$display("Write took %d cycles to %x", delay, addr);
+		end
 		
 		// Reset the memory.
 		//resetMem();
