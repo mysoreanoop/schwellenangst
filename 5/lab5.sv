@@ -52,8 +52,8 @@ endmodule
 // Test the data memory, and figure out the settings.
 
 module lab5_testbench ();
-	localparam USERID = 2126740;  // Set to your student ID #
-	//localparam USERID = 2027267;  // Set to your student ID #
+	localparam USERID = 2126740;  // Sanjuktka
+	//localparam USERID = 2027267;  // Anoop
 	//localparam USERID = 0;
 	localparam ADDRESS_WIDTH = 20;
 	localparam DATA_WIDTH = 8;
@@ -241,69 +241,195 @@ module lab5_testbench ();
 	
 	logic	[DATA_WIDTH-1:0][7:0]	dummy_data;
 	logic [ADDRESS_WIDTH-1:0]		addr;
-	int	i, j, k, r, q, delay, minval, maxval;
+	int	i, j, k, r, m, q, delay, minval, maxval;
 	
 	initial begin
 		dummy_data <= '0;
 		resetMem();				// Initialize the memory.
 		//for (k=1; k<32; k++) begin
+    //k = 16;
     //  r=$urandom%k;
     //  q=$urandom%k;
-    //  for (j=0; j<k; j++) begin
-		//    for (i=0; i<16; i++) begin
-		//    	addr = (j<<15) + (i<<3);
-		//    	readMem(addr, dummy_data, delay);
-		//    	$display("Read took %d cycles @%x", delay, addr);
-		//    end
-		// 	  $display("\n");
-		//    for (i=0; i<16; i++) begin
-		//    	addr = 20'h00000+(i<<3);
-		//    	readMem(addr, dummy_data, delay);
-		//    	$display("Read took %d cycles @%x", delay, addr);
-		//    end
-		//	  $display("\n");
+    //  for(m=0; m<2; m++)
+    //  for (j=0; j<=k; j++) begin
+    //    for (i=0; i<16; i++) begin
+    //      addr = (j<<15) + (i<<3);
+    //      readMem(addr, dummy_data, delay);
+    //      $display("Read took %d cycles @%x", delay, addr);
+    //    end
+    //    $display("\n");
+    //    for (i=0; i<16; i++) begin
+    //      addr = (12<<15) + (i<<3);
+    //      readMem(addr, dummy_data, delay);
+    //      $display("Read took %d cycles @%x", delay, addr);
+    //    end
+    //    $display("\n");
     //  end
+        //for(m=0; m<2; m++)
+		    //for (i=0; i<16; i++) begin
+      for(k=0; k<200; k++) begin
+		    for (i=0; i<8; i++) begin
+		    	addr = (k<<15) + (i<<3);
+          readMem(addr, dummy_data, delay);
+          $display("Read took %d cycles @%x", delay, addr);
+		    end
+		 	  $display("\n");
+      end
+		 	$display("\n");
+		  	addr = (0<<15) + (0<<3);
+		    writeMem(addr, dummy_data, 8'hFF, delay);
+		    $display("Write took %d cycles to %x", delay, addr);
+		 	$display("\n");
+		  	addr = (0<<15) + (1<<3);
+		    writeMem(addr, dummy_data, 8'hFF, delay);
+		    $display("Write took %d cycles to %x", delay, addr);
+		 	$display("\n");
+		  	addr = (0<<15) + (2<<3);
+		    writeMem(addr, dummy_data, 8'hFF, delay);
+		    $display("Write took %d cycles to %x", delay, addr);
+		 	$display("\n");
+		  	addr = (0<<15) + (3<<3);
+		    writeMem(addr, dummy_data, 8'hFF, delay);
+		    $display("Write took %d cycles to %x", delay, addr);
+		 	$display("\n");
+		  	addr = (0<<15) + (4<<3);
+		    writeMem(addr, dummy_data, 8'hFF, delay);
+		    $display("Write took %d cycles to %x", delay, addr);
+		 	$display("\n");
+		  	addr = (0<<15) + (5<<3);
+		    writeMem(addr, dummy_data, 8'hFF, delay);
+		    $display("Write took %d cycles to %x", delay, addr);
+		 	$display("\n");
+		  	addr = (0<<15) + (6<<3);
+		    writeMem(addr, dummy_data, 8'hFF, delay);
+		    $display("Write took %d cycles to %x", delay, addr);
+		 	$display("\n");
+		  	addr = (0<<15) + (7<<3);
+		    writeMem(addr, dummy_data, 8'hFF, delay);
+		    $display("Write took %d cycles to %x", delay, addr);
+
+
+
+		    for (i=0; i<16; i++) begin
+		    	addr = (1<<15) + (i<<3);
+          readMem(addr, dummy_data, delay);
+          $display("Read took %d cycles @%x", delay, addr);
+		    end
+		 	  $display("\n");
+		    for (i=0; i<16; i++) begin
+		    	addr = (2<<15) + (i<<3);
+          readMem(addr, dummy_data, delay);
+          $display("Read took %d cycles @%x", delay, addr);
+		    end
+		 	  $display("\n");
+		    	addr = (0<<15) + (3<<3);
+          readMem(addr, dummy_data, delay);
+          $display("Read took %d cycles @%x", delay, addr);
+		 	  $display("\n");
+		    	addr = (0<<15) + (2<<3);
+          readMem(addr, dummy_data, delay);
+          $display("Read took %d cycles @%x", delay, addr);
+		 	  $display("\n");
+		    	addr = (0<<15) + (1<<3);
+          readMem(addr, dummy_data, delay);
+          $display("Read took %d cycles @%x", delay, addr);
+		 	  $display("\n");
+		    	addr = (0<<15) + (0<<3);
+          readMem(addr, dummy_data, delay);
+          $display("Read took %d cycles @%x", delay, addr);
+		 	  $display("\n");
+		    //end
+
+
+
+		 	  $display("\n");
+		    for (i=0; i<16; i++) begin
+		    	addr = (3<<15) + (i<<3);
+          readMem(addr, dummy_data, delay);
+          $display("Read took %d cycles @%x", delay, addr);
+		    end
+		 	  $display("\n");
+		    for (i=0; i<16; i++) begin
+		    	addr = (4<<15) + (i<<3);
+          readMem(addr, dummy_data, delay);
+          $display("Read took %d cycles @%x", delay, addr);
+		    end
+		 	  $display("\n");
+		    for (i=0; i<16; i++) begin
+		    	addr = (5<<15) + (i<<3);
+          readMem(addr, dummy_data, delay);
+          $display("Read took %d cycles @%x", delay, addr);
+		    end
+			  $display("\n");
+		    for (i=0; i<16; i++) begin
+		    	addr = (6<<15) + (i<<3);
+          readMem(addr, dummy_data, delay);
+          $display("Read took %d cycles @%x", delay, addr);
+		    end
+			  $display("\n");
+      //end
     //end
 
-		for (i=0; i<32; i++) begin
-			addr = (1<<15) + (i<<3);
-			dummy_data = i;
-			writeMem(addr, dummy_data, 8'hFF, delay);
-			$display("Write took %d cycles to %x", delay, addr);
-		end
-    $display("\n");
-		for (i=0; i<32; i++) begin
-		    	addr = (1<<15)+(i<<3);
-		    	readMem(addr, dummy_data, delay);
-		    	$display("Read took %d cycles @%x", delay, addr);
-		//	addr = (0<<15) + (i<<3);
+		////for (i=0; i<32; i++) begin
+		//	addr = (1<<15) + (0<<3);
 		//	dummy_data = i;
 		//	writeMem(addr, dummy_data, 8'hFF, delay);
 		//	$display("Write took %d cycles to %x", delay, addr);
-		end
-    $display("\n");
-		for (i=0; i<32; i++) begin
-			addr = (2<<15) + (i<<3);
-			dummy_data = i;
-			writeMem(addr, dummy_data, 8'hFF, delay);
-			$display("Write took %d cycles to %x", delay, addr);
-		end
-    $display("\n");
-		for (i=0; i<32; i++) begin
-			addr = (1<<15) + (i<<3);
-			dummy_data = i;
-			writeMem(addr, dummy_data, 8'hFF, delay);
-			$display("Write took %d cycles to %x", delay, addr);
-		end
-		
-		// Reset the memory.
+		//	//addr = (1<<15) + (1<<3);
+		//	//dummy_data = i;
+		//	//writeMem(addr, dummy_data, 8'hFF, delay);
+		//	//$display("Write took %d cycles to %x", delay, addr);
+		//	//addr = (1<<15) + (2<<3);
+		//	//dummy_data = i;
+		//	//writeMem(addr, dummy_data, 8'hFF, delay);
+		//	//$display("Write took %d cycles to %x", delay, addr);
+		////end
+    //$display("\n");
+		////for (i=0; i<32; i++) begin
+		//    	addr = (1<<15)+(0<<3);
+		//    	readMem(addr, dummy_data, delay);
+		//    	$display("Read took %d cycles @%x", delay, addr);
+		//    	//addr = (1<<15)+(1<<3);
+		//    	//readMem(addr, dummy_data, delay);
+		//    	//$display("Read took %d cycles @%x", delay, addr);
+		//    	//addr = (1<<15)+(2<<3);
+		//    	//readMem(addr, dummy_data, delay);
+		//    	//$display("Read took %d cycles @%x", delay, addr);
+		////	addr = (0<<15) + (i<<3);
+		////	dummy_data = i;
+		////	writeMem(addr, dummy_data, 8'hFF, delay);
+		////	$display("Write took %d cycles to %x", delay, addr);
+		////end
+    //$display("\n");
+		//for (i=0; i<32; i++) begin
+		//	addr = (2<<15) + (i<<3);
+		//	dummy_data = i;
+		//	writeMem(addr, dummy_data, 8'hFF, delay);
+		//	$display("Write took %d cycles to %x", delay, addr);
+		//end
+    //$display("\n");
+		//for (i=0; i<32; i++) begin
+		//	addr = (3<<15) + (i<<3);
+		//	dummy_data = i;
+		//	writeMem(addr, dummy_data, 8'hFF, delay);
+		//	$display("Write took %d cycles to %x", delay, addr);
+		//end
+    //$display("\n");
+		//for (i=0; i<32; i++) begin
+		//	addr = (1<<15) + (i<<3);
+		//	dummy_data = i;
+		//	writeMem(addr, dummy_data, 8'hFF, delay);
+		//	$display("Write took %d cycles to %x", delay, addr);
+		//end
+		//
+		//// Reset the memory.
 		//resetMem();
-		
-		// Read all of the first KB
-		//readStride(0, 2<<16, 2<<5, minval, maxval);
-		//readStride(0, 1<<16, 2<<7, minval, maxval);
-		//readStride(0, 1<<3, 2<<5, minval, maxval);
-		//readStride(0, 1<<3, 1<<8, minval, maxval);
+		//
+		//// Read all of the first KB
+		//readStride(0, 2<<16, 2<<10, minval, maxval);
+		//readStride(0, 1<<16, 2<<10, minval, maxval);
+		//readStride(0, 1<<3, 2<<10, minval, maxval);
+		//readStride(0, 1<<6, 1<<10, minval, maxval);
 		//$display("Reading the first KB took between %d and %d cycles each", minval, maxval);
 
 		$stop();
